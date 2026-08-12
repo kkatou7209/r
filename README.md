@@ -16,7 +16,7 @@ Creates client instance with `create` function and request with any method.
 
 
 ```ts
-import { r , type RResponse } from 'r';
+import { r , type RResponse } from '@mitte/r';
 
 const client = r.create();
 
@@ -28,7 +28,7 @@ const response: RResponse = await client
 You can also create a instance with default configurations.
 
 ```ts
-import { r } from 'r';
+import { r } from '@mitte/r';
 
 const client = r.create({
     cache: 'cors',
