@@ -1,6 +1,6 @@
 {
     "name": "@mitte/r",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Simprify fetch request.",
     "license": "MIT",
     "author": "K.Kato <kkatou7209@gmail.com>",
