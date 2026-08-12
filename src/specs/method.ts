@@ -1,0 +1,23 @@
+/**
+ * HTTP request methods.
+ * 
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods}
+ */
+export const HttpMethod = Object.freeze({
+    GET: 'GET',
+    POST: 'POST',
+    PUT: 'PUT',
+    PATCH: 'PATCH',
+    DELETE: 'DELETE',
+    OPTIONS: 'OPTIONS',
+    HEAD: 'HEAD',
+    TRACE: 'TRACE',
+    CONNECT: 'CONNECT',
+});
+
+/**
+ * HTTP request method.
+ * 
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods}
+ */
+export type HttpMethod = typeof HttpMethod[keyof typeof HttpMethod];

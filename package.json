@@ -1,0 +1,45 @@
+{
+    "name": "@mitte/r",
+    "version": "0.1.0",
+    "description": "Simprify fetch request.",
+    "license": "MIT",
+    "author": "K.Kato <kkatou7209@gmail.com>",
+    "private": false,
+    "type": "module",
+    "main": "./dist/index.cjs",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.cts",
+    "files": [
+        "dist"
+    ],
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/kkatou7209/r.git"
+    },
+    "bugs": {
+        "url": "https://github.com/kkatou7209/r/issues"
+    },
+    "exports": {
+        ".": {
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.cjs"
+        },
+        "./package.json": "./package.json"
+    },
+    "sideEffects": false,
+    "scripts": {
+        "build": "tsdown",
+        "dev": "tsdown --watch",
+        "test": "vitest run",
+        "type:check": "tsc --noEmit --project tsconfig.json"
+    },
+    "devDependencies": {
+        "jsdom": "^30.0.1",
+        "tsdown": "^0.22.5",
+        "typescript": "^7.0.2",
+        "vitest": "^4.1.10"
+    }
+}

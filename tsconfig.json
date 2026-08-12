@@ -1,0 +1,37 @@
+{
+    "compilerOptions": {
+        "strict": true,
+        "module": "esnext",
+        "target": "es2025",
+        "allowJs": false,
+        "alwaysStrict": true,
+        "noImplicitAny": true,
+        "noEmit": true,
+        "noImplicitThis": true,
+        "noImplicitOverride": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "removeComments": false,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": true,
+        "allowArbitraryExtensions": false,
+        "exactOptionalPropertyTypes": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictPropertyInitialization": true,
+        "useUnknownInCatchVariables": true,
+
+        "paths": {
+            "@/*": ["./src/*"],
+            "@": ["./src/index.ts"]
+        },
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+    ]
+}
