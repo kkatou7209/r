@@ -2,7 +2,7 @@ import { RClient } from '@/client';
 import { defaultConfig, type RConfig, type DefaultRConfig } from '@/config';
 
 export interface RApi {
-    
+
     /**
      * Creates new HTTP client instance with optional configuration.
      * 
@@ -20,7 +20,7 @@ export interface RApi {
  * Creates client instance with `create` function and request with any method.
  * 
  * ```ts
- * import { r , type RResponse } from 'r';
+ * import { r , type RResponse } from '@mitte/r';
  * 
  * const client = r.create();
  * 
@@ -32,7 +32,7 @@ export interface RApi {
  * You can also create a instance with default configurations.
  * 
  * ```ts
- * import { r , type RResponse } from 'r';
+ * import { r , type RResponse } from '@mitte/r';
  * 
  * const client = r.create({
  *      cache: 'cors',
