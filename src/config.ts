@@ -1,4 +1,6 @@
 import { HeaderName } from '@/specs/header';
+import { RRequestMiddleware } from './middlewares/request';
+import { RResponseMiddleware } from './middlewares/response';
 
 export type Headers = {
     [K in HeaderName]?: string;
@@ -40,6 +42,11 @@ export interface RConfig {
      * Redirect option.
      */
     readonly redirect: RequestRedirect;
+
+    /**
+     * Fetch middlewares.
+     */
+    readonly middlewares: (RRequestMiddleware | RResponseMiddleware)[];
 }
 
 /**
@@ -54,4 +61,5 @@ export const defaultConfig: Readonly<RConfig> = Object.freeze({
     mode: 'same-origin',
     priority: 'auto',
     redirect: 'follow',
+    middlewares: [],
 });

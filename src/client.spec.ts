@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { RClient } from '@/client';
 import { defaultConfig } from '@/config';
+import { RRequestMiddleware } from '@/middlewares/request';
+import { RResponseMiddleware } from '@/middlewares/response';
 
 describe('RClient tests', async () => {
 
@@ -30,7 +32,13 @@ describe('RClient tests', async () => {
             mode: 'same-origin',
             priority: 'auto',
             redirect: 'follow',
+            middlewares: [],
         });
+
+        const middlewares = [
+            new RRequestMiddleware((req) => req),
+            new RResponseMiddleware((res) => res),
+        ];
 
         const extended = client.extend({
             cache: 'force-cache',
@@ -41,6 +49,7 @@ describe('RClient tests', async () => {
             mode: 'navigate',
             priority: 'high',
             redirect: 'error',
+            middlewares,
         });
 
         const originalConfig = client['config'];
@@ -53,6 +62,7 @@ describe('RClient tests', async () => {
         expect(originalConfig.mode).toBe('same-origin');
         expect(originalConfig.priority).toBe('auto');
         expect(originalConfig.redirect).toBe('follow');
+        expect(originalConfig.middlewares).toEqual([]);
 
         expect(extendedConfig.cache).toBe('force-cache');
         expect(extendedConfig.credentials).toBe('include');
@@ -62,32 +72,42 @@ describe('RClient tests', async () => {
         expect(extendedConfig.mode).toBe('navigate');
         expect(extendedConfig.priority).toBe('high');
         expect(extendedConfig.redirect).toBe('error');
+        expect(extendedConfig.middlewares).toEqual(middlewares);
     });
 
-    it('should keep existing options in config when client is extended', async () => {
+    it('should create valid instance with builder', async () => {
 
-        const client = new RClient({
-            cache: 'no-store',
-            credentials: 'omit',
-            headers: {
-                'Accept': 'application/json; charset=utf-8',
-                'Accept-Language': 'da, en-gb;q=0.8, en;q=0.7',
-            },
-            mode: 'no-cors',
-            priority: 'low',
-            redirect: 'manual',
-        });
+        const fetcher: typeof globalThis.fetch = async (_, __) => new Response();
+
+        const middlewares = [
+            new RRequestMiddleware((req) => req),
+            new RResponseMiddleware((res) => res),
+        ];
+
+        const client = RClient.builder()
+            .cache('force-cache')
+            .credentials('omit')
+            .headers({
+                'Content-Type': 'application/json',
+            })
+            .header('ETag', '10000')
+            .redirect('error')
+            .mode('no-cors')
+            .priority('low')
+            .middlewares(...middlewares)
+            .fetchBy(fetcher)
+            .build();
 
         const config = client['config'];
 
-        expect(config.cache).toBe('no-store');
+        expect(config.cache).toBe('force-cache');
         expect(config.credentials).toBe('omit');
-        expect(config.headers).toEqual({
-            'Accept': 'application/json; charset=utf-8',
-            'Accept-Language': 'da, en-gb;q=0.8, en;q=0.7',
-        });
+        expect(config.redirect).toBe('error');
         expect(config.mode).toBe('no-cors');
         expect(config.priority).toBe('low');
-        expect(config.redirect).toBe('manual');
+        expect(config.headers['ETag']).toBe('10000');
+        expect(config.headers['Content-Type']).toBe('application/json');
+        expect(config.middlewares).toEqual(middlewares);
+        expect(client['fetcher']).toBe(fetcher);
     });
 });

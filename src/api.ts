@@ -1,19 +1,92 @@
-import { RClient } from '@/client';
+import { RClient, RClientBuilder } from '@/client';
 import { defaultConfig, type RConfig, type DefaultRConfig } from '@/config';
+import { RRequestMiddleware, RRequestMiddlewareHandler } from '@/middlewares/request';
+import { RResponseMiddleware, RResponseMiddlewareHandler } from '@/middlewares/response';
+import { CacheOption, RedirectOption, CredentialsOption } from '@/specs/fetch';
+import { HttpHeader } from '@/specs/header';
 
 export interface RApi {
+
+    /**
+     * `cache` options of `fetch`.
+     */
+    readonly CacheOption: CacheOption;
+
+    /**
+     * `credentials` options of `fetch`.
+     */
+    readonly CredentialsOption: CredentialsOption;
+
+    /**
+     * `redirect` options of `fetch`.
+     */
+    readonly RedirectOption: RedirectOption;
+
+    /**
+     * HTTP header names.
+     */
+    readonly HttpHeader: HttpHeader;
 
     /**
      * Creates new HTTP client instance with optional configuration.
      * 
      * The default configuration is defined as {@link DefaultRConfig} type.
      * 
+     * ```ts
+     * import { r } from '@mitte/r';
+     * 
+     * const client = r.create({
+     *      cache: r.CacheOption.NoCache,
+     * });
+     * ```
+     * 
      * @param config Client configuration.
+     * @param fetcher Fetch function.
      */
     readonly create: (
         config?: Partial<RConfig>,
         fetcher?: typeof globalThis.fetch,
     ) => RClient;
+
+    /**
+     * Creates new HTTP client instance from builder.
+     * 
+     * Sets config options with methods and call `build()` to
+     * create client.
+     * 
+     * ```ts
+     * import { r } from '@mitte/r';
+     * 
+     * const client = r.builder()
+     *      .cache('same-origin')
+     *      .credentials('include')
+     *      .header(r.HttpHeader.ContentType, 'application/json')
+     *      .middlewares(
+     *          r.before(request => {
+     *              ...
+     *          }),
+     *          r.after(response => {
+     *              ...
+     *          }),
+     *      )
+     *      .build();
+     * ```
+     */
+    readonly builder: () => RClientBuilder;
+
+    /**
+     * Creates a new middleware to handle request.
+     * 
+     * @param handler Callback to handle request.
+     */
+    readonly before: (handler: RRequestMiddlewareHandler) => RRequestMiddleware;
+
+    /**
+     * Creates a new middleware to handle response.
+     * 
+     * @param handler Callback to handle response.
+     */
+    readonly after: (handler: RResponseMiddlewareHandler) => RResponseMiddleware;
 }
 
 /**
@@ -55,6 +128,11 @@ export interface RApi {
  */
 export const r: RApi = Object.freeze({
 
+    CacheOption,
+    RedirectOption,
+    CredentialsOption,
+    HttpHeader,
+
     create: (
         config?: Partial<RConfig>,
         fetcher?: typeof globalThis.fetch
@@ -65,5 +143,15 @@ export const r: RApi = Object.freeze({
             : defaultConfig;
 
         return new RClient(conf, fetcher);
+    },
+
+    builder: () => RClient.builder(),
+
+    before: (handler: RRequestMiddlewareHandler): RRequestMiddleware => {
+        return new RRequestMiddleware(handler);
+    },
+
+    after: (handler: RResponseMiddlewareHandler): RResponseMiddleware => {
+        return new RResponseMiddleware(handler);
     }
 });

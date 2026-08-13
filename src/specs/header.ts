@@ -248,7 +248,12 @@ export const HttpHeader = Object.freeze({
 });
 
 /**
- * HTTP request header name.
+ * HTTP header names. 
+ */
+export type HttpHeader = typeof HttpHeader;
+
+/**
+ * HTTP header name.
  * 
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers}
  */

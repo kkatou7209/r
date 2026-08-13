@@ -2,6 +2,8 @@ import { describe, expect, it } from 'vitest';
 import { RRequest } from '@/request';
 import { defaultConfig } from '@/config';
 import { HttpMethod } from '@/specs/method';
+import { RResponseMiddleware } from './middlewares/response';
+import { RRequestMiddleware } from './middlewares/request';
 
 describe('RRequest tests', async () => {
 
@@ -122,5 +124,82 @@ describe('RRequest tests', async () => {
         expect(params.get('key5')).toBe('[object Object]');
         expect(params.get('key6')).toBe('');
         expect(params.get('key7')).toEqual('[object File]');
+    });
+
+    it('should execute middlewares', async () => {
+
+        let race = 0;
+        let requestMiddewareCount = 0;
+        let responseMiddewareCount = 0;
+        let lastExecutedResponseMiddleware = 0;
+        let lastExecutedRequestMiddleware = 0;
+
+        const request = new RRequest(
+            'https://r.test.com',
+            {
+                ...defaultConfig,
+                middlewares: [
+                    new RResponseMiddleware(res => {
+                        if (race === 0) {
+                            race = 2;
+                        }
+                        responseMiddewareCount++;
+                        lastExecutedResponseMiddleware = 1;
+                        return res;
+                    }),
+                    new RRequestMiddleware(req => {
+                        if (race === 0) {
+                            race = 1;
+                        }
+                        requestMiddewareCount++;
+                        lastExecutedRequestMiddleware = 1;
+                        return req;
+                    }),
+                    new RResponseMiddleware(res => {
+                        if (race === 0) {
+                            race = 2;
+                        }
+                        responseMiddewareCount++;
+                        lastExecutedResponseMiddleware = 2;
+                        return res;
+                    }),
+                    new RRequestMiddleware(req => {
+                        if (race === 0) {
+                            race = 1;
+                        }
+                        requestMiddewareCount++;
+                        lastExecutedRequestMiddleware = 2;
+                        return req;
+                    }),
+                    new RRequestMiddleware(req => {
+                        if (race === 0) {
+                            race = 1;
+                        }
+                        requestMiddewareCount++;
+                        lastExecutedRequestMiddleware = 3;
+                        return req;
+                    }),
+                    new RResponseMiddleware(res => {
+                        if (race === 0) {
+                            race = 2;
+                        }
+                        responseMiddewareCount++;
+                        lastExecutedResponseMiddleware = 3;
+                        return res;
+                    }),
+                ]
+            },
+            async (_, __) => {
+                return new Response();
+            }
+        );
+
+        await request.get();
+
+        expect(race).toBe(1);
+        expect(requestMiddewareCount).toBe(3);
+        expect(responseMiddewareCount).toBe(3);
+        expect(lastExecutedRequestMiddleware).toBe(3);
+        expect(lastExecutedResponseMiddleware).toBe(3);
     });
 });

@@ -2,6 +2,8 @@ import { RConfig } from '@/config';
 import { RResponse } from '@/response';
 import { HttpMethod } from '@/specs/method';
 import { HeaderName } from '@/specs/header';
+import { RRequestMiddleware } from './middlewares/request';
+import { RResponseMiddleware } from './middlewares/response';
 
 export type RRequestInit = RequestInit & { headers: Record<string, string>; };
 
@@ -18,6 +20,8 @@ export class RRequest {
 
     private init: RRequestInit;
 
+    private middlewares: (RRequestMiddleware | RResponseMiddleware)[];
+
     constructor(
         uri: string,
         config: RConfig,
@@ -32,6 +36,7 @@ export class RRequest {
             priority: config.priority,
             redirect: config.redirect,
         };
+        this.middlewares = config.middlewares;
         this.fetcher = fetcher ?? fetch;
     }
 
@@ -216,10 +221,25 @@ export class RRequest {
             ? `${this.uri}?${this.searchParams}`
             : this.uri;
 
-        const res = await this.fetcher(uri, {
-            ...this.init,
-            method,
-        });
-        return new RResponse(res);
+        let request = new Request(
+            new URL(uri),
+            { ...this.init, method, }
+        );
+
+        for (const middleware of this.middlewares) {
+            if (middleware instanceof RRequestMiddleware) {
+                request = middleware.handle(request);
+            }
+        }
+
+        let response = await this.fetcher(request);
+
+        for (const middleware of this.middlewares) {
+            if (middleware instanceof RResponseMiddleware) {
+                response = middleware.handle(response);
+            }
+        }
+
+        return new RResponse(response);
     }
 }
