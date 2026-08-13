@@ -1,7 +1,7 @@
 import { RConfig } from '@/config';
 import { RResponse } from '@/response';
 import { HttpMethod } from '@/specs/method';
-import { HeaderName, HttpHeader } from '@/specs/header';
+import { HeaderName } from '@/specs/header';
 
 export type RRequestInit = RequestInit & { headers: Record<string, string>; };
 
