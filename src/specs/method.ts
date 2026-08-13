@@ -11,8 +11,6 @@ export const HttpMethod = Object.freeze({
     DELETE: 'DELETE',
     OPTIONS: 'OPTIONS',
     HEAD: 'HEAD',
-    TRACE: 'TRACE',
-    CONNECT: 'CONNECT',
 });
 
 /**

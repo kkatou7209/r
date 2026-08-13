@@ -77,12 +77,6 @@ export class RRequest {
         this.send(HttpMethod.OPTIONS);
 
     /**
-     * Exceutes TRACE request.
-     */
-    public readonly trace = (): Promise<RResponse> =>
-        this.send(HttpMethod.TRACE);
-
-    /**
      * Exceutes HEAD request.
      */
     public readonly head = (): Promise<RResponse> =>

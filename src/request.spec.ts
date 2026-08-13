@@ -35,9 +35,6 @@ describe('RRequest tests', async () => {
         await request.delete();
         expect(method, HttpMethod.DELETE);
 
-        await request.trace();
-        expect(method, HttpMethod.TRACE);
-
         await request.head();
         expect(method, HttpMethod.HEAD);
 

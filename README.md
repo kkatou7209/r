@@ -65,9 +65,5 @@ client
 
 client
     .request('...')
-    .trace();
-
-client
-    .request('...')
     .head();
 ```

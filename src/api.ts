@@ -122,7 +122,6 @@ export interface RApi {
  * client.request('...').patch();
  * client.request('...').delete();
  * client.request('...').options();
- * client.request('...').trace();
  * client.request('...').head();
  * ```
  */
