@@ -105,8 +105,13 @@ export class RRequest {
         const form = new FormData();
 
         for (const key in value) {
-            form.append(key, value[key]);
+
+            const val = value[key];
+
+            form.append(key, val);
         }
+
+        this.init.body = form;
 
         return this;
     }

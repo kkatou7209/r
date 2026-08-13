@@ -42,4 +42,38 @@ describe('RRequest tests', async () => {
         await request.options();
         expect(method, HttpMethod.OPTIONS);
     });
+
+    it('should create valid form data', async () => {
+
+        let formData: FormData = undefined as unknown as FormData;
+
+        const request = new RRequest(
+            'https://r.test.com',
+            { ...defaultConfig },
+            async (_, init) => {
+                formData = init?.body as FormData;
+                return new Response();
+            }
+        );
+
+        request.formData({
+            key1: 1,
+            key2: 2,
+            key3: 'data',
+            key4: () => {},
+            key5: {},
+            key6: [],
+            key7: new File([], 'test'),
+        });
+
+        await request.get();
+
+        expect(formData.get('key1')).toBe('1');
+        expect(formData.get('key2')).toBe('2');
+        expect(formData.get('key3')).toBe('data');
+        expect(formData.get('key4')).toBe('() => {}');
+        expect(formData.get('key5')).toBe('[object Object]');
+        expect(formData.get('key6')).toBe('');
+        expect(formData.get('key7')).toEqual(new File([], 'test'));
+    });
 });

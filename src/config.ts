@@ -47,11 +47,11 @@ export interface RConfig {
  */
 export type DefaultRConfig = typeof defaultConfig;
 
-export const defaultConfig = {
+export const defaultConfig: Readonly<RConfig> = Object.freeze({
     cache: 'default',
     credentials: 'same-origin',
     headers: {},
     mode: 'same-origin',
     priority: 'auto',
     redirect: 'follow',
-} as const satisfies RConfig;
+});
