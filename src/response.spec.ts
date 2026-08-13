@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { RResponse } from './response';
+import { HttpStatus } from './specs/status';
 
 describe('RResponse tests', async () => {
 
@@ -9,14 +10,14 @@ describe('RResponse tests', async () => {
             new Response(null, { status: 200 }),
         );
 
-        expect(response.statusIs(200)).toBeTruthy();
-        expect(response.statusIs(300)).toBeFalsy();
+        expect(response.statusIs(HttpStatus.Ok)).toBeTruthy();
+        expect(response.statusIs(HttpStatus.PermanentRedirect)).toBeFalsy();
         
         response = new RResponse(
             new Response(null, { status: 500 }),
         );
 
-        expect(response.statusIs(500)).toBeTruthy();
-        expect(response.statusIs(400)).toBeFalsy();
+        expect(response.statusIs(HttpStatus.InternalServerError)).toBeTruthy();
+        expect(response.statusIs(HttpStatus.BadRequest)).toBeFalsy();
     });
 });
