@@ -14,6 +14,8 @@ export class RRequest {
 
     private readonly uri: string;
 
+    private searchParams: URLSearchParams | null = null;
+
     private init: RRequestInit;
 
     constructor(
@@ -80,6 +82,24 @@ export class RRequest {
      */
     public readonly head = (): Promise<RResponse> =>
         this.send(HttpMethod.HEAD);
+
+    /**
+     * Sets URL parameters.
+     */
+    public readonly params = (params: Record<string, any>): RRequest => {
+        
+        const searchParams = new URLSearchParams;
+
+        for (const key in params) {
+            searchParams.append(key, params[key]);
+        }
+
+        if (searchParams.size > 0) {
+            this.searchParams = searchParams;
+        }
+
+        return this;
+    }
 
     /**
      * Sets body data.
@@ -191,7 +211,12 @@ export class RRequest {
     private readonly send = async (
         method: HttpMethod,
     ): Promise<RResponse> => {
-        const res = await this.fetcher(this.uri, {
+
+        const uri = this.searchParams
+            ? `${this.uri}?${this.searchParams}`
+            : this.uri;
+
+        const res = await this.fetcher(uri, {
             ...this.init,
             method,
         });

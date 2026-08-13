@@ -70,15 +70,9 @@ describe('RRequest tests', async () => {
 
     it('should create valid form data', async () => {
 
-        let formData: FormData = undefined as unknown as FormData;
-
         const request = new RRequest(
             'https://r.test.com',
             { ...defaultConfig },
-            async (_, init) => {
-                formData = init?.body as FormData;
-                return new Response();
-            }
         );
 
         request.formData({
@@ -91,7 +85,7 @@ describe('RRequest tests', async () => {
             key7: new File([], 'test'),
         });
 
-        await request.get();
+        const formData = request['init']['body'] as FormData;
 
         expect(formData.get('key1')).toBe('1');
         expect(formData.get('key2')).toBe('2');
@@ -100,5 +94,33 @@ describe('RRequest tests', async () => {
         expect(formData.get('key5')).toBe('[object Object]');
         expect(formData.get('key6')).toBe('');
         expect(formData.get('key7')).toEqual(new File([], 'test'));
+    });
+
+    it('should set URL parameters', async () => {
+
+        const request = new RRequest(
+            'https://r.test.com',
+            { ...defaultConfig },
+        );
+
+        request.params({
+            key1: 1,
+            key2: 2,
+            key3: 'data',
+            key4: () => {},
+            key5: {},
+            key6: [],
+            key7: new File([], 'test'),
+        });
+
+        const params = request['searchParams'] as URLSearchParams;
+
+        expect(params.get('key1')).toBe('1');
+        expect(params.get('key2')).toBe('2');
+        expect(params.get('key3')).toBe('data');
+        expect(params.get('key4')).toBe('() => {}');
+        expect(params.get('key5')).toBe('[object Object]');
+        expect(params.get('key6')).toBe('');
+        expect(params.get('key7')).toEqual('[object File]');
     });
 });
