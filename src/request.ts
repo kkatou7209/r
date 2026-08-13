@@ -181,30 +181,6 @@ export class RRequest {
     }
 
     /**
-     * Sets `Content-Type` header.
-     */
-    public readonly contentType = (contentType: string): RRequest => {
-        this.header(HttpHeader.ContentType, contentType);
-        return this;
-    }
-
-    /**
-     * Sets `Accept` header.
-     */
-    public readonly accept = (accept: string): RRequest => {
-        this.header(HttpHeader.Accept, accept);
-        return this;
-    }
-
-    /**
-     * Sets `Accept-Encoding` header.
-     */
-    public readonly acceptEncoding = (acceptEncoding: string): RRequest => {
-        this.header(HttpHeader.AcceptEncoding, acceptEncoding);
-        return this;
-    }
-
-    /**
      * Clears all headers of {@link RequestInit}.
      */
     public readonly clearHeaders = (): RRequest => {

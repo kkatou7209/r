@@ -43,6 +43,31 @@ describe('RRequest tests', async () => {
         expect(method, HttpMethod.OPTIONS);
     });
 
+    it('should set valid request options', async () => {
+
+        const request = new RRequest(
+            'https://r.test.com',
+            { ...defaultConfig }
+        );
+
+        request
+            .cache('force-cache')
+            .credentials('omit')
+            .keepalive()
+            .redirect('error')
+            .mode('navigate')
+            .priority('low');
+
+        const config = request['init'];
+
+        expect(config.cache).toBe('force-cache');
+        expect(config.credentials).toBe('omit');
+        expect(config.keepalive).toBe(true);
+        expect(config.redirect).toBe('error');
+        expect(config.mode).toBe('navigate');
+        expect(config.priority).toBe('low');
+    });
+
     it('should create valid form data', async () => {
 
         let formData: FormData = undefined as unknown as FormData;
