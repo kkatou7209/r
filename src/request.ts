@@ -2,8 +2,9 @@ import { RConfig } from '@/config';
 import { RResponse } from '@/response';
 import { HttpMethod } from '@/specs/method';
 import { HeaderName } from '@/specs/header';
-import { RRequestMiddleware } from './middlewares/request';
-import { RResponseMiddleware } from './middlewares/response';
+import { RRequestMiddleware } from '@/middlewares/request';
+import { RResponseMiddleware } from '@/middlewares/response';
+import { RRetryStrategy, RRetryPredict } from '@/retryStrategy';
 
 export type RRequestInit = RequestInit & { headers: Record<string, string>; };
 
@@ -22,12 +23,17 @@ export class RRequest {
 
     private middlewares: (RRequestMiddleware | RResponseMiddleware)[];
 
+    private retry: RRetryStrategy;
+
+    private timeout: number | null;
+
     constructor(
         uri: string,
         config: RConfig,
         fetcher?: typeof globalThis.fetch
     ) {
         this.uri = uri;
+        
         this.init = {
             cache: config.cache,
             credentials: config.credentials,
@@ -36,7 +42,16 @@ export class RRequest {
             priority: config.priority,
             redirect: config.redirect,
         };
+
         this.middlewares = config.middlewares;
+        
+        this.retry = new RRetryStrategy({
+            retriableCodes: config.retriableCodes,
+            predictor: config.retryOn,
+        });
+
+        this.timeout = config.timeout ?? null;
+        
         this.fetcher = fetcher ?? fetch;
     }
 
@@ -207,9 +222,54 @@ export class RRequest {
         return this;
     }
 
+    /**
+     * Sets `signal` option to {@link RequestInit}.
+     */
+    public readonly signal = (signal: AbortSignal): RRequest => {
+        this.init.signal = signal;
+        return this;
+    }
+
+    /**
+     * Sets status codes on which request assumed to be retriable.
+     */
+    public readonly retriableCodes = (statusCodes: number[]): RRequest => {
+        this.retry.retriableCodes(...statusCodes);
+        return this;
+    }
+
+    /**
+     * Sets `retryOn` option.
+     * 
+     * This option sets predictor for checking if the response is considered as
+     * retriable.
+     */
+    public readonly retryOn = (predict: RRetryPredict): RRequest => {
+        this.retry.retryOn(predict);
+        return this;
+    }
+
     private readonly send = async (
         method: HttpMethod,
     ): Promise<RResponse> => {
+
+        const aborter = new AbortController();
+
+        if (this.init.signal?.aborted === false) {
+
+            this.init.signal.addEventListener('abort', () => {
+                aborter.abort(this.init.signal?.reason);
+            });
+        }
+
+        if (typeof this.timeout == 'number' && this.timeout >= 0) {
+
+            const timeout = AbortSignal.timeout(this.timeout);
+
+            timeout.addEventListener('abort', () => {
+                aborter.abort(timeout.reason);
+            });
+        }
 
         const uri = this.searchParams
             ? `${this.uri}?${this.searchParams}`
@@ -217,7 +277,11 @@ export class RRequest {
 
         let request = new Request(
             new URL(uri),
-            { ...this.init, method, }
+            {
+                ...this.init,
+                method,
+                signal: aborter.signal,
+            }
         );
 
         for (const middleware of this.middlewares) {
@@ -226,14 +290,21 @@ export class RRequest {
             }
         }
 
-        let response = await this.fetcher(request);
+        if (this.init.signal) {
+            this.init.signal.throwIfAborted();
+        }
+
+        let response = await this.retry.trial(async () => await this.fetcher(request, request));
 
         for (const middleware of this.middlewares) {
+
             if (middleware instanceof RResponseMiddleware) {
                 response = middleware.handle(response);
             }
         }
 
-        return new RResponse(response);
+        const rresponse = new RResponse(response);
+
+        return rresponse;
     }
 }

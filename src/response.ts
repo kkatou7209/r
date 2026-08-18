@@ -7,6 +7,10 @@ export class RResponse {
 
     private readonly response: Response;
 
+    public get inner(): Response {
+        return this.response;
+    }
+
     constructor(response: Response) {
         this.response = response;
     }

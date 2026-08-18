@@ -1,14 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import { RClient } from '@/client';
-import { defaultConfig } from '@/config';
 import { RRequestMiddleware } from '@/middlewares/request';
 import { RResponseMiddleware } from '@/middlewares/response';
+import { RDefaults } from '@/default';
 
 describe('RClient tests', async () => {
 
     it('should request with custom fetch.', async () => {
 
-        const client = new RClient(defaultConfig, async (_, __) => {
+        const client = new RClient(RDefaults.Config, async (_, __) => {
 
             return new Response(null, {
                 status: 200,
@@ -33,6 +33,10 @@ describe('RClient tests', async () => {
             priority: 'auto',
             redirect: 'follow',
             middlewares: [],
+            retriableCodes: [],
+            retryLimit: 0,
+            retryInterval: 0,
+            timeout: 5000,
         });
 
         const middlewares = [
@@ -73,41 +77,5 @@ describe('RClient tests', async () => {
         expect(extendedConfig.priority).toBe('high');
         expect(extendedConfig.redirect).toBe('error');
         expect(extendedConfig.middlewares).toEqual(middlewares);
-    });
-
-    it('should create valid instance with builder', async () => {
-
-        const fetcher: typeof globalThis.fetch = async (_, __) => new Response();
-
-        const middlewares = [
-            new RRequestMiddleware((req) => req),
-            new RResponseMiddleware((res) => res),
-        ];
-
-        const client = RClient.builder()
-            .cache('force-cache')
-            .credentials('omit')
-            .headers({
-                'Content-Type': 'application/json',
-            })
-            .header('ETag', '10000')
-            .redirect('error')
-            .mode('no-cors')
-            .priority('low')
-            .middlewares(...middlewares)
-            .fetchBy(fetcher)
-            .build();
-
-        const config = client['config'];
-
-        expect(config.cache).toBe('force-cache');
-        expect(config.credentials).toBe('omit');
-        expect(config.redirect).toBe('error');
-        expect(config.mode).toBe('no-cors');
-        expect(config.priority).toBe('low');
-        expect(config.headers['ETag']).toBe('10000');
-        expect(config.headers['Content-Type']).toBe('application/json');
-        expect(config.middlewares).toEqual(middlewares);
-        expect(client['fetcher']).toBe(fetcher);
     });
 });

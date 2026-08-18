@@ -1,10 +1,15 @@
-import { RClient, RClientBuilder } from '@/client';
-import { defaultConfig, type RConfig, type DefaultRConfig } from '@/config';
+import { RClient } from '@/client';
+import { RClientBuilder } from '@/clientBuilder';
+import { type RConfig, type DefaultRConfig } from '@/config';
 import { RRequestMiddleware, RRequestMiddlewareHandler } from '@/middlewares/request';
 import { RResponseMiddleware, RResponseMiddlewareHandler } from '@/middlewares/response';
 import { CacheOption, RedirectOption, CredentialsOption } from '@/specs/fetch';
 import { HttpHeader } from '@/specs/header';
+import { RDefaults } from '@/default';
 
+/**
+ * Root of API.
+ */
 export interface RApi {
 
     /**
@@ -26,6 +31,11 @@ export interface RApi {
      * HTTP header names.
      */
     readonly HttpHeader: HttpHeader;
+
+    /**
+     * Libary default values.
+     */
+    readonly Defaults: typeof RDefaults;
 
     /**
      * Creates new HTTP client instance with optional configuration.
@@ -131,6 +141,7 @@ export const r: RApi = Object.freeze({
     RedirectOption,
     CredentialsOption,
     HttpHeader,
+    Defaults: RDefaults,
 
     create: (
         config?: Partial<RConfig>,
@@ -138,8 +149,8 @@ export const r: RApi = Object.freeze({
     ) => {
 
         const conf = config
-            ? { ...defaultConfig, ...config }
-            : defaultConfig;
+            ? { ...RDefaults.Config, ...config }
+            : RDefaults.Config;
 
         return new RClient(conf, fetcher);
     },

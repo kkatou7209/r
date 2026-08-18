@@ -33,3 +33,4 @@ export const RedirectOption = Object.freeze({
 }) satisfies Readonly<Record<string, RequestRedirect>>;
 
 export type RedirectOption = typeof RedirectOption;
+

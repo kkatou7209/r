@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { RRequest } from '@/request';
-import { defaultConfig } from '@/config';
 import { HttpMethod } from '@/specs/method';
 import { RResponseMiddleware } from './middlewares/response';
 import { RRequestMiddleware } from './middlewares/request';
+import { RDefaults } from './default';
 
 describe('RRequest tests', async () => {
 
@@ -13,7 +13,7 @@ describe('RRequest tests', async () => {
 
         const request = new RRequest(
             'https://r.test.com',
-            { ...defaultConfig },
+            { ...RDefaults.Config },
             async (_, init) => {
                 method = init?.method;
                 return new Response();
@@ -46,7 +46,7 @@ describe('RRequest tests', async () => {
 
         const request = new RRequest(
             'https://r.test.com',
-            { ...defaultConfig }
+            { ...RDefaults.Config }
         );
 
         request
@@ -71,7 +71,7 @@ describe('RRequest tests', async () => {
 
         const request = new RRequest(
             'https://r.test.com',
-            { ...defaultConfig },
+            { ...RDefaults.Config },
         );
 
         request.formData({
@@ -99,7 +99,7 @@ describe('RRequest tests', async () => {
 
         const request = new RRequest(
             'https://r.test.com',
-            { ...defaultConfig },
+            { ...RDefaults.Config },
         );
 
         request.params({
@@ -134,7 +134,7 @@ describe('RRequest tests', async () => {
         const request = new RRequest(
             'https://r.test.com',
             {
-                ...defaultConfig,
+                ...RDefaults.Config,
                 middlewares: [
                     new RResponseMiddleware(res => {
                         if (race === 0) {
@@ -198,5 +198,29 @@ describe('RRequest tests', async () => {
         expect(responseMiddewareCount).toBe(3);
         expect(lastExecutedRequestMiddleware).toBe(3);
         expect(lastExecutedResponseMiddleware).toBe(3);
+    });
+
+    it('should abort on timeout', async () => {
+
+        const request = new RRequest(
+            'https://r.test.com',
+            {
+                ...RDefaults.Config,
+                timeout: 0,
+            },
+            (_, init) => {
+                return new Promise((_, reject) => {
+                    init?.signal?.addEventListener('abort', () => {
+                        reject(init.signal?.reason);
+                    });
+                });
+            }
+        );
+
+        try {
+            await request.get();
+        } catch (error) {
+            expect((error as DOMException).name).toBe('TimeoutError');
+        }
     });
 });

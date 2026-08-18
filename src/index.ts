@@ -1,10 +1,7 @@
-export type { DefaultRConfig, RConfig } from '@/config';
-export type { RClient } from '@/client';
-export type { RApi } from '@/api';
-export { HttpHeader, type HeaderName } from '@/specs/header';
+export { HttpHeader } from '@/specs/header';
 export { HttpMethod } from '@/specs/method';
 export { HttpStatus } from '@/specs/status';
-export { Encoders, type EncodingOption, AcceptEncoding } from '@/specs/encoding';
+export { Encoders, AcceptEncoding } from '@/specs/encoding';
 export {
     CacheOption,
     CredentialsOption,
