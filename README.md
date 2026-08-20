@@ -101,4 +101,4 @@ client
 
 ## API
 
-See [here](https://github.com/kkatou7209/r/docs/api/globals.md)
+See [here](https://github.com/kkatou7209/r/blob/main/docs/api/globals.md)
