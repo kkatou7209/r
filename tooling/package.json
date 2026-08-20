@@ -1,0 +1,9 @@
+{
+  "name": "r-tooling",
+  "private": true,
+  "devDependencies": {
+    "typescript": "^6.0.0",
+    "typedoc": "^0.28.20",
+    "typedoc-plugin-markdown": "^4.12.0"
+  }
+}

@@ -1,8 +1,7 @@
 import type { HeaderName } from '@/specs/header';
 import { RRequestMiddleware } from '@/middlewares/request';
 import { RResponseMiddleware } from '@/middlewares/response';
-import type { RRetryPredict } from '@/retryStrategy';
-import { RDefaults } from '@/default';
+import type { RRetryPredict } from '@/retry/types';
 import type { RequestReferrePolicy, RequestReferrer } from '@/specs/fetch';
 
 /**
@@ -114,8 +113,3 @@ export interface RConfig {
      */
     readonly timeout: number | undefined | null;
 }
-
-/**
- * Default configuration definition.
- */
-export type DefaultRConfig = typeof RDefaults.Config;

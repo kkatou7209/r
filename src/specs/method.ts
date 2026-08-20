@@ -18,4 +18,6 @@ export const HttpMethod = Object.freeze({
  * 
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Methods}
  */
-export type HttpMethod = typeof HttpMethod[keyof typeof HttpMethod];
+export type HttpMethod = typeof HttpMethod;
+
+export type HttpMethodPhrase = typeof HttpMethod[keyof HttpMethod];

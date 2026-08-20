@@ -1,3 +1,7 @@
+**@mitte/r**
+
+***
+
 # `R`
 
 `R` is a fetch wrapper library that simplifies common HTTP requests.
@@ -101,4 +105,4 @@ client
 
 ## API
 
-See [here](https://github.com/kkatou7209/r/docs/api/globals.md)
+See [here](./docs/api/globals.md)

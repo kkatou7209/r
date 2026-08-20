@@ -2,7 +2,7 @@ import type { Mutable } from '@/types';
 import type { HeaderName } from '@/specs/header';
 import { RRequestMiddleware } from '@/middlewares/request';
 import { RResponseMiddleware } from '@/middlewares/response';
-import type { RRetryPredict } from '@/retryStrategy';
+import type { RRetryPredict } from '@/retry/types';
 import { RDefaults } from '@/default';
 import { type Headers, type RConfig } from '@/config';
 import { RClient } from '@/client';

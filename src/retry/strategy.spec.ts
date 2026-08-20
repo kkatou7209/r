@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { describe, expect, it } from 'vitest';
-import { RRetryStrategy } from '@/retryStrategy';
+import { RRetryStrategy } from '@/retry/strategy';
 
 describe('RRetryStrategy tests', async () => {
 

@@ -34,12 +34,21 @@
         "build": "tsdown",
         "dev": "tsdown --watch",
         "test": "vitest run",
-        "type:check": "tsc --noEmit --project tsconfig.json"
+        "type:check": "tsc --noEmit --project tsconfig.json",
+        "docs": "cd tooling && bunx typedoc"
     },
     "devDependencies": {
         "jsdom": "^30.0.1",
         "tsdown": "^0.22.5",
+        "typedoc": "^0.28.20",
+        "typedoc-plugin-markdown": "^4.12.0",
         "typescript": "^7.0.2",
+        "typescript6": "npm:typescript@^6.0.0",
         "vitest": "^4.1.10"
+    },
+    "overrides": {
+        "typedoc": {
+            "typescript": "npm:@typescript/typescript6@latest"
+        }
     }
 }

@@ -1,10 +1,11 @@
 import type { RConfig } from '@/config';
 import { RResponse } from '@/response';
-import { HttpMethod } from '@/specs/method';
+import { HttpMethod, type HttpMethodPhrase } from '@/specs/method';
 import type { HeaderName } from '@/specs/header';
 import { RRequestMiddleware } from '@/middlewares/request';
 import { RResponseMiddleware } from '@/middlewares/response';
-import { RRetryStrategy, type RRetryPredict } from '@/retryStrategy';
+import { RRetryStrategy } from '@/retry/strategy';
+import type { RRetryPredict } from '@/retry/types';
 import type { Mutable } from '@/types';
 
 export type RRequestInit = RequestInit & { headers: Record<string, string>; };
@@ -288,7 +289,7 @@ export class RRequest {
     }
 
     private readonly send = async (
-        method: HttpMethod,
+        method: HttpMethodPhrase,
     ): Promise<RResponse> => {
 
         const aborter = new AbortController();

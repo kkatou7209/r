@@ -1,0 +1,25 @@
+{
+    "entryPoints": ["../src/index.ts"],
+    "out": "../docs/api",
+    "tsconfig": "../tsconfig.json",
+    "excludePrivate": true,
+    "excludeProtected": false,
+    "excludeInternal": true,
+    "readme": "../README.md",
+    "plugin": ["typedoc-plugin-markdown"],
+    "externalSymbolLinkMappings": {
+        "typescript": {
+            "RequestInit": "https://developer.mozilla.org/en-US/docs/Web/API/RequestInit",
+            "RequestCredentials": "https://developer.mozilla.org/en-US/docs/Web/API/Request/credentials",
+            "RequestCache": "https://developer.mozilla.org/en-US/docs/Web/API/Request/cache",
+            "RequestMode": "https://developer.mozilla.org/en-US/docs/Web/API/Request/mode",
+            "RequestRedirect": "https://developer.mozilla.org/en-US/docs/Web/API/Request/redirect",
+            "RequestPriority": "https://developer.mozilla.org/en-US/docs/Web/API/Request/priority",
+            "Response": "https://developer.mozilla.org/en-US/docs/Web/API/Response",
+            "AbortSignal": "https://developer.mozilla.org/en-US/docs/Web/API/AbortSignal"
+        }
+    },
+    "intentionallyNotExported": [
+        "RDefaultConfig"
+    ]
+}
