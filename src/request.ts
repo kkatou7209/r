@@ -1,58 +1,97 @@
-import { RConfig } from '@/config';
+import type { RConfig } from '@/config';
 import { RResponse } from '@/response';
 import { HttpMethod } from '@/specs/method';
-import { HeaderName } from '@/specs/header';
+import type { HeaderName } from '@/specs/header';
 import { RRequestMiddleware } from '@/middlewares/request';
 import { RResponseMiddleware } from '@/middlewares/response';
-import { RRetryStrategy, RRetryPredict } from '@/retryStrategy';
+import { RRetryStrategy, type RRetryPredict } from '@/retryStrategy';
+import type { Mutable } from '@/types';
 
 export type RRequestInit = RequestInit & { headers: Record<string, string>; };
+
+export type RRequestConfig = RConfig & {
+    readonly keepalive: boolean;
+}
 
 /**
  * Handles HTTP requests.
  */
 export class RRequest {
 
-    private readonly fetcher: typeof globalThis.fetch;
+    private readonly _fetcher: typeof globalThis.fetch;
 
-    private readonly uri: string;
+    private _config: Mutable<RRequestConfig>;
+    
+    private readonly _endpoint: URL;
 
-    private searchParams: URLSearchParams | null = null;
+    private _searchParams: URLSearchParams;
 
-    private init: RRequestInit;
+    private _body: BodyInit | null = null;
 
-    private middlewares: (RRequestMiddleware | RResponseMiddleware)[];
+    private _middlewares: (RRequestMiddleware | RResponseMiddleware)[];
 
-    private retry: RRetryStrategy;
+    private _retry: RRetryStrategy;
 
-    private timeout: number | null;
+    private _timeout: number | null;
+
+    private _signals: AbortSignal[] = [];
+
+    public get fetcher(): typeof globalThis.fetch {
+        return this._fetcher;
+    }
+
+    public get config(): RRequestConfig {
+        return {
+            ...this._config,
+        };
+    }
+    
+    public get endpoint(): URL {
+        return new URL(this._endpoint);
+    }
+
+    public get searchParams(): URLSearchParams {
+        return new URLSearchParams(this._searchParams);
+    }
+
+    public get bodyData(): BodyInit | null {
+        return this._body;
+    }
+
+    public get middleware(): (RRequestMiddleware | RResponseMiddleware)[] {
+        return [...this._middlewares];
+    }
+
+    public get timeout(): number | null {
+        return this._timeout;
+    }
 
     constructor(
-        uri: string,
+        uri: string | URL,
         config: RConfig,
         fetcher?: typeof globalThis.fetch
     ) {
-        this.uri = uri;
-        
-        this.init = {
-            cache: config.cache,
-            credentials: config.credentials,
-            headers: { ...config.headers },
-            mode: config.mode,
-            priority: config.priority,
-            redirect: config.redirect,
+        this._config = {
+            ...config,
+            keepalive: false,
         };
 
-        this.middlewares = config.middlewares;
+        const _uri = new URL(uri);
+
+        this._endpoint = new URL(`${_uri.protocol}//${_uri.hostname}${_uri.pathname}`);
+
+        this._searchParams = _uri.searchParams;
+
+        this._middlewares = config.middlewares;
         
-        this.retry = new RRetryStrategy({
+        this._retry = new RRetryStrategy({
             retriableCodes: config.retriableCodes,
             predictor: config.retryOn,
         });
 
-        this.timeout = config.timeout ?? null;
+        this._timeout = config.timeout ?? null;
         
-        this.fetcher = fetcher ?? fetch;
+        this._fetcher = fetcher ?? fetch;
     }
 
     /**
@@ -102,14 +141,8 @@ export class RRequest {
      */
     public readonly params = (params: Record<string, any>): RRequest => {
         
-        const searchParams = new URLSearchParams;
-
         for (const key in params) {
-            searchParams.append(key, params[key]);
-        }
-
-        if (searchParams.size > 0) {
-            this.searchParams = searchParams;
+            this._searchParams.append(key, params[key]);
         }
 
         return this;
@@ -119,7 +152,7 @@ export class RRequest {
      * Sets body data.
      */
     public readonly body = (body: BodyInit): RRequest => {
-        this.init.body = body;
+        this._body = body;
         return this;
     }
 
@@ -127,7 +160,7 @@ export class RRequest {
      * Sets body data converting JavaScript value into JSON string.
      */
     public readonly json = (value: any): RRequest => {
-        this.init.body = JSON.stringify(value);
+        this._body = JSON.stringify(value);
         return this;
     }
 
@@ -145,7 +178,7 @@ export class RRequest {
             form.append(key, val);
         }
 
-        this.init.body = form;
+        this._body = form;
 
         return this;
     }
@@ -154,7 +187,7 @@ export class RRequest {
      * Sets `keepalive` option to {@link RequestInit}.
      */
     public readonly keepalive = (): RRequest => {
-        this.init.keepalive = true;
+        this._config.keepalive = true;
         return this;
     }
 
@@ -162,7 +195,7 @@ export class RRequest {
      * Sets `cache` option to {@link RequestInit}.
      */
     public readonly cache = (cache: RequestCache): RRequest => {
-        this.init.cache = cache;
+        this._config.cache = cache;
         return this;
     }
 
@@ -170,7 +203,7 @@ export class RRequest {
      * Sets `credentials` option to {@link RequestInit}.
      */
     public readonly credentials = (credentials: RequestCredentials): RRequest => {
-        this.init.credentials = credentials;
+        this._config.credentials = credentials;
         return this;
     }
 
@@ -178,7 +211,7 @@ export class RRequest {
      * Sets `mode` option to {@link RequestInit}.
      */
     public readonly mode = (mode: RequestMode): RRequest => {
-        this.init.mode = mode;
+        this._config.mode = mode;
         return this;
     }
 
@@ -186,7 +219,7 @@ export class RRequest {
      * Sets `priority` option to {@link RequestInit}.
      */
     public readonly priority = (priority: RequestPriority): RRequest => {
-        this.init.priority = priority;
+        this._config.priority = priority;
         return this;
     }
 
@@ -194,7 +227,7 @@ export class RRequest {
      * Sets `priority` option to {@link RequestInit}.
      */
     public readonly redirect = (redirect: RequestRedirect): RRequest => {
-        this.init.redirect = redirect;
+        this._config.redirect = redirect;
         return this;
     }
 
@@ -202,7 +235,7 @@ export class RRequest {
      * Sets `headers` option to {@link RequestInit}.
      */
     public readonly header = (name: HeaderName | string, value: string): RRequest => {
-        this.init.headers[name] = value;
+        this._config.headers[name] = value;
         return this;
     }
 
@@ -210,7 +243,12 @@ export class RRequest {
      * Sets `headers` option to {@link RequestInit}.
      */
     public readonly headers = (headers: Record<string, string>): RRequest => {
-        this.init.headers = { ...this.init.headers, ...headers };
+        
+        this._config.headers = {
+            ...this._config.headers,
+            ...headers
+        };
+
         return this;
     }
 
@@ -218,15 +256,15 @@ export class RRequest {
      * Clears all headers of {@link RequestInit}.
      */
     public readonly clearHeaders = (): RRequest => {
-        this.init.headers = {};
+        this._config.headers = {};
         return this;
     }
 
     /**
      * Sets `signal` option to {@link RequestInit}.
      */
-    public readonly signal = (signal: AbortSignal): RRequest => {
-        this.init.signal = signal;
+    public readonly addSignal = (signal: AbortSignal): RRequest => {
+        this._signals.push(signal);
         return this;
     }
 
@@ -234,7 +272,7 @@ export class RRequest {
      * Sets status codes on which request assumed to be retriable.
      */
     public readonly retriableCodes = (statusCodes: number[]): RRequest => {
-        this.retry.retriableCodes(...statusCodes);
+        this._retry.retriableCodes(...statusCodes);
         return this;
     }
 
@@ -245,7 +283,7 @@ export class RRequest {
      * retriable.
      */
     public readonly retryOn = (predict: RRetryPredict): RRequest => {
-        this.retry.retryOn(predict);
+        this._retry.retryOn(predict);
         return this;
     }
 
@@ -255,49 +293,47 @@ export class RRequest {
 
         const aborter = new AbortController();
 
-        if (this.init.signal?.aborted === false) {
-
-            this.init.signal.addEventListener('abort', () => {
-                aborter.abort(this.init.signal?.reason);
-            });
+        for (const signal of this._signals) {
+            
+            if (signal.aborted === false) {
+    
+                signal.addEventListener('abort', () => {
+                    aborter.abort(signal.reason);
+                });
+            }
         }
 
-        if (typeof this.timeout == 'number' && this.timeout >= 0) {
+        if (typeof this._timeout == 'number' && this._timeout >= 0) {
 
-            const timeout = AbortSignal.timeout(this.timeout);
+            const timeout = AbortSignal.timeout(this._timeout);
 
             timeout.addEventListener('abort', () => {
                 aborter.abort(timeout.reason);
             });
         }
 
-        const uri = this.searchParams
-            ? `${this.uri}?${this.searchParams}`
-            : this.uri;
+        const uri = this._searchParams
+            ? `${this._endpoint}?${this._searchParams}`
+            : this._endpoint;
 
         let request = new Request(
             new URL(uri),
             {
-                ...this.init,
+                ...this._init(),
                 method,
                 signal: aborter.signal,
             }
         );
 
-        for (const middleware of this.middlewares) {
+        for (const middleware of this._middlewares) {
             if (middleware instanceof RRequestMiddleware) {
                 request = middleware.handle(request);
             }
         }
 
-        if (this.init.signal) {
-            this.init.signal.throwIfAborted();
-        }
+        let response = await this._retry.trial(async () => await this._fetcher(request, request));
 
-        let response = await this.retry.trial(async () => await this.fetcher(request, request));
-
-        for (const middleware of this.middlewares) {
-
+        for (const middleware of this._middlewares) {
             if (middleware instanceof RResponseMiddleware) {
                 response = middleware.handle(response);
             }
@@ -306,5 +342,19 @@ export class RRequest {
         const rresponse = new RResponse(response);
 
         return rresponse;
+    }
+
+    private readonly _init = (): RRequestInit => {
+
+        return {
+            cache: this._config.cache,
+            credentials: this._config.credentials,
+            headers: { ...this._config.headers },
+            mode: this._config.mode,
+            priority: this._config.priority,
+            redirect: this._config.redirect,
+            keepalive: this._config.keepalive,
+            body: this._body,
+        }
     }
 }

@@ -24,17 +24,21 @@ describe('RClientBuilder test', async () => {
             .redirect('error')
             .mode('no-cors')
             .priority('low')
+            .referrer('https://r.test.com')
+            .referrerPolicy('no-referrer-when-downgrade')
             .middlewares(...middlewares)
             .fetchBy(fetcher)
             .build();
 
-        const config = client['config'];
+        const config = client['_config'];
 
         expect(config.cache).toBe('force-cache');
         expect(config.credentials).toBe('omit');
         expect(config.redirect).toBe('error');
         expect(config.mode).toBe('no-cors');
         expect(config.priority).toBe('low');
+        expect(config.referrer).toBe('https://r.test.com');
+        expect(config.referrerPolicy).toBe('no-referrer-when-downgrade');
         expect(config.headers['ETag']).toBe('10000');
         expect(config.headers['Content-Type']).toBe('application/json');
         expect(config.middlewares).toEqual(middlewares);

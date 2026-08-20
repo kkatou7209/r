@@ -1,18 +1,19 @@
 import type { Mutable } from '@/types';
-import { HeaderName } from '@/specs/header';
+import type { HeaderName } from '@/specs/header';
 import { RRequestMiddleware } from '@/middlewares/request';
 import { RResponseMiddleware } from '@/middlewares/response';
-import { RRetryPredict } from '@/retryStrategy';
+import type { RRetryPredict } from '@/retryStrategy';
 import { RDefaults } from '@/default';
 import { type Headers, type RConfig } from '@/config';
 import { RClient } from '@/client';
+import type { RequestReferrePolicy, RequestReferrer } from '@/specs/fetch';
 
 /**
  * Builder of HTTTP client.
  */
 export class RClientBuilder {
 
-    private readonly config: Mutable<RConfig> = { ...RDefaults.Config };
+    private readonly _config: Mutable<RConfig> = { ...RDefaults.Config };
 
     private fetcher: typeof globalThis.fetch = fetch;
 
@@ -20,7 +21,7 @@ export class RClientBuilder {
      * Sets `cache` option.
      */
     public readonly cache = (cache: RequestCache): RClientBuilder => {
-        this.config.cache = cache;
+        this._config.cache = cache;
         return this;
     }
 
@@ -28,7 +29,7 @@ export class RClientBuilder {
      * Sets `credentials` option.
      */
     public readonly credentials = (credentials: RequestCredentials): RClientBuilder => {
-        this.config.credentials = credentials;
+        this._config.credentials = credentials;
         return this;
     }
 
@@ -36,7 +37,7 @@ export class RClientBuilder {
      * Sets `mode` option.
      */
     public readonly mode = (mode: RequestMode): RClientBuilder => {
-        this.config.mode = mode;
+        this._config.mode = mode;
         return this;
     }
 
@@ -44,7 +45,7 @@ export class RClientBuilder {
      * Sets `priority` option.
      */
     public readonly priority = (priority: RequestPriority): RClientBuilder => {
-        this.config.priority = priority;
+        this._config.priority = priority;
         return this;
     }
 
@@ -52,7 +53,23 @@ export class RClientBuilder {
      * Sets `priority` option.
      */
     public readonly redirect = (redirect: RequestRedirect): RClientBuilder => {
-        this.config.redirect = redirect;
+        this._config.redirect = redirect;
+        return this;
+    }
+
+    /**
+     * Sets `referrer` option.
+     */
+    public readonly referrer = (referrer: RequestReferrer): RClientBuilder => {
+        this._config.referrer = referrer;
+        return this;
+    }
+
+    /**
+     * Sets `referrerPolicy` option.
+     */
+    public readonly referrerPolicy = (policy: RequestReferrePolicy): RClientBuilder => {
+        this._config.referrerPolicy = policy;
         return this;
     }
 
@@ -60,7 +77,7 @@ export class RClientBuilder {
      * Sets `headers` option.
      */
     public readonly header = (name: HeaderName | (string & {}), value: string): RClientBuilder => {
-        this.config.headers[name] = value;
+        this._config.headers[name] = value;
         return this;
     }
 
@@ -68,7 +85,7 @@ export class RClientBuilder {
      * Sets `headers` option.
      */
     public readonly headers = (headers: Headers): RClientBuilder => {
-        this.config.headers = { ...this.config.headers, ...headers };
+        this._config.headers = { ...this._config.headers, ...headers };
         return this;
     }
 
@@ -77,7 +94,7 @@ export class RClientBuilder {
      * which request will retry on.
      */
     public readonly retriableCodes = (statusCodes: number[]): RClientBuilder => {
-        this.config.retriableCodes = statusCodes;
+        this._config.retriableCodes = statusCodes;
         return this;
     }
 
@@ -88,7 +105,7 @@ export class RClientBuilder {
      * Preceeds `retriableCodes` option.
      */
     public readonly retryOn = (predict: RRetryPredict): RClientBuilder => {
-        this.config.retryOn = predict;
+        this._config.retryOn = predict;
         return this;
     }
 
@@ -98,7 +115,7 @@ export class RClientBuilder {
      * Minumum value is `0`.
      */
     public readonly retryLimit = (limit: number): RClientBuilder => {
-        this.config.retryLimit = limit;
+        this._config.retryLimit = limit;
         return this;
     }
 
@@ -109,7 +126,7 @@ export class RClientBuilder {
      * Minumum value is `0`.
      */
     public readonly retryInterval = (interval: number): RClientBuilder => {
-        this.config.retryInterval = interval;
+        this._config.retryInterval = interval;
         return this;
     }
 
@@ -121,7 +138,7 @@ export class RClientBuilder {
     public readonly middlewares = (
         ...middlewares: (RRequestMiddleware | RResponseMiddleware)[]
     ): RClientBuilder => {
-        this.config.middlewares = [...middlewares]
+        this._config.middlewares = [...middlewares]
         return this;
     }
 
@@ -138,6 +155,6 @@ export class RClientBuilder {
      */
     public readonly build = () => {
 
-        return new RClient(this.config, this.fetcher);
+        return new RClient(this._config, this.fetcher);
     }
 }

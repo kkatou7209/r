@@ -1,8 +1,9 @@
-import { HeaderName } from '@/specs/header';
+import type { HeaderName } from '@/specs/header';
 import { RRequestMiddleware } from '@/middlewares/request';
 import { RResponseMiddleware } from '@/middlewares/response';
-import { RRetryPredict } from '@/retryStrategy';
+import type { RRetryPredict } from '@/retryStrategy';
 import { RDefaults } from '@/default';
+import type { RequestReferrePolicy, RequestReferrer } from '@/specs/fetch';
 
 /**
  * HTTP headers
@@ -59,6 +60,13 @@ export interface RConfig {
      * Default is `'follow'`.
      */
     readonly redirect: RequestRedirect;
+
+    /**
+     * Referrer option.
+     */
+    readonly referrer: RequestReferrer;
+
+    readonly referrerPolicy: RequestReferrePolicy;
 
     /**
      * Fetch middlewares.

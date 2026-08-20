@@ -1,11 +1,22 @@
 import { describe, expect, it } from 'vitest';
 import { RRequest } from '@/request';
 import { HttpMethod } from '@/specs/method';
-import { RResponseMiddleware } from './middlewares/response';
-import { RRequestMiddleware } from './middlewares/request';
-import { RDefaults } from './default';
+import { RResponseMiddleware } from '@/middlewares/response';
+import { RRequestMiddleware } from '@/middlewares/request';
+import { RDefaults } from '@/default';
 
 describe('RRequest tests', async () => {
+
+    it('should parse URL', async () => {
+
+        const request = new RRequest(
+            'https://r.test.com/api/blog/post?keyword=food&page=2',
+            { ...RDefaults.Config }
+        );
+
+        expect(`${request.endpoint}`).toBe('https://r.test.com/api/blog/post');
+        expect(`${request.searchParams}`).toBe('keyword=food&page=2');
+    });
 
     it('should execute request with valid methods', async () => {
 
@@ -57,7 +68,7 @@ describe('RRequest tests', async () => {
             .mode('navigate')
             .priority('low');
 
-        const config = request['init'];
+        const config = request.config;
 
         expect(config.cache).toBe('force-cache');
         expect(config.credentials).toBe('omit');
@@ -84,7 +95,7 @@ describe('RRequest tests', async () => {
             key7: new File([], 'test'),
         });
 
-        const formData = request['init']['body'] as FormData;
+        const formData = request.bodyData as FormData;
 
         expect(formData.get('key1')).toBe('1');
         expect(formData.get('key2')).toBe('2');
@@ -112,7 +123,7 @@ describe('RRequest tests', async () => {
             key7: new File([], 'test'),
         });
 
-        const params = request['searchParams'] as URLSearchParams;
+        const params = request.searchParams;
 
         expect(params.get('key1')).toBe('1');
         expect(params.get('key2')).toBe('2');
@@ -198,6 +209,23 @@ describe('RRequest tests', async () => {
         expect(responseMiddewareCount).toBe(3);
         expect(lastExecutedRequestMiddleware).toBe(3);
         expect(lastExecutedResponseMiddleware).toBe(3);
+    });
+
+    it('should abort if any signals aborted', async () => {
+
+        const controller1 = new AbortController();
+        const controller2 = new AbortController();
+        const controller3 = new AbortController();
+
+        const request = new RRequest(
+            'https://r.test.com',
+            { ...RDefaults.Config },
+        );
+
+        request
+            .addSignal(controller1.signal)
+            .addSignal(controller2.signal)
+            .addSignal(controller3.signal);
     });
 
     it('should abort on timeout', async () => {

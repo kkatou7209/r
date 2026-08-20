@@ -1,4 +1,4 @@
-import { RConfig } from '@/config';
+import type { RConfig } from '@/config';
 
 export const RDefaults = Object.freeze({
     RetryLimit: 3,
@@ -12,10 +12,12 @@ export const RDefaults = Object.freeze({
         mode: 'same-origin',
         priority: 'auto',
         redirect: 'follow',
+        referrer: 'about:client',
+        referrerPolicy: 'strict-origin-when-cross-origin',
         middlewares: [],
         retryLimit: 0,
         retriableCodes: [],
         retryInterval: 0,
         timeout: null,
-    }) satisfies Readonly<RConfig>
+    }) satisfies Readonly<RConfig>,
 });

@@ -8,7 +8,7 @@ describe('API tests', async () => {
 
         const client = r.create();
 
-        const config = client['config'];
+        const config = client['_config'];
 
         expect(config.cache).toBe(RDefaults.Config.cache);
         expect(config.credentials).toBe(RDefaults.Config.credentials);

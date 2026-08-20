@@ -1,4 +1,4 @@
-import { HttpStatus } from '@/specs/status';
+import { type HttpStatusCode } from '@/specs/status';
 
 /**
  * Wrapper of `Response`. 
@@ -7,7 +7,10 @@ export class RResponse {
 
     private readonly response: Response;
 
-    public get inner(): Response {
+    /**
+     * Gets original response.
+     */
+    public get original(): Response {
         return this.response;
     }
 
@@ -120,6 +123,6 @@ export class RResponse {
      * }
      * ```
      */
-    public readonly statusIs = (status: HttpStatus | (number & {})) =>
+    public readonly statusIs = (status: HttpStatusCode | (number & {})) =>
         this.status === status;
 }

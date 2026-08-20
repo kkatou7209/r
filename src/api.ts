@@ -1,11 +1,14 @@
 import { RClient } from '@/client';
 import { RClientBuilder } from '@/clientBuilder';
 import { type RConfig, type DefaultRConfig } from '@/config';
-import { RRequestMiddleware, RRequestMiddlewareHandler } from '@/middlewares/request';
-import { RResponseMiddleware, RResponseMiddlewareHandler } from '@/middlewares/response';
+import { RRequestMiddleware, type RRequestMiddlewareHandler } from '@/middlewares/request';
+import { RResponseMiddleware, type RResponseMiddlewareHandler } from '@/middlewares/response';
 import { CacheOption, RedirectOption, CredentialsOption } from '@/specs/fetch';
 import { HttpHeader } from '@/specs/header';
 import { RDefaults } from '@/default';
+import { RResponse } from '@/response';
+import { HttpMethod } from '@/specs/method';
+import { HttpStatus } from '@/specs/status';
 
 /**
  * Root of API.
@@ -31,6 +34,9 @@ export interface RApi {
      * HTTP header names.
      */
     readonly HttpHeader: HttpHeader;
+
+
+    readonly HttpStatus: HttpStatus;
 
     /**
      * Libary default values.
@@ -97,6 +103,41 @@ export interface RApi {
      * @param handler Callback to handle response.
      */
     readonly after: (handler: RResponseMiddlewareHandler) => RResponseMiddleware;
+
+    /**
+     * Requests GET with default options.
+     */
+    readonly get: (info: URL | RequestInfo) => Promise<RResponse>;
+
+    /**
+     * Requests POST with default options.
+     */
+    readonly post: (info: URL | RequestInfo) => Promise<RResponse>;
+
+    /**
+     * Requests PUT with default options.
+     */
+    readonly put: (info: URL | RequestInfo) => Promise<RResponse>;
+    
+    /**
+     * Requests PATCH with default options.
+     */
+    readonly patch: (info: URL | RequestInfo) => Promise<RResponse>;
+    
+    /**
+     * Requests DELETE with default options.
+     */
+    readonly delete: (info: URL | RequestInfo) => Promise<RResponse>;
+    
+    /**
+     * Requests OPTIONS with default options.
+     */
+    readonly options: (info: URL | RequestInfo) => Promise<RResponse>;
+    
+    /**
+     * Requests HEAD with default options.
+     */
+    readonly head: (info: URL | RequestInfo) => Promise<RResponse>;
 }
 
 /**
@@ -140,7 +181,11 @@ export const r: RApi = Object.freeze({
     CacheOption,
     RedirectOption,
     CredentialsOption,
+
     HttpHeader,
+    HttpMethod,
+    HttpStatus,
+    
     Defaults: RDefaults,
 
     create: (
@@ -163,5 +208,75 @@ export const r: RApi = Object.freeze({
 
     after: (handler: RResponseMiddlewareHandler): RResponseMiddleware => {
         return new RResponseMiddleware(handler);
-    }
+    },
+
+    get: async (input: URL | RequestInfo, init?: RequestInit): Promise<RResponse> => {
+
+        const response = await fetch(input, {
+            ...init,
+            method: HttpMethod.GET,
+        });
+
+        return new RResponse(response);
+    },
+
+    post: async (input: URL | RequestInfo, init?: RequestInit): Promise<RResponse> => {
+
+        const response = await fetch(input, {
+            ...init,
+            method: HttpMethod.POST,
+        });
+
+        return new RResponse(response);
+    },
+
+    put: async (input: URL | RequestInfo, init?: RequestInit): Promise<RResponse> => {
+
+        const response = await fetch(input, {
+            ...init,
+            method: HttpMethod.PUT,
+        });
+
+        return new RResponse(response);
+    },
+
+    patch: async (input: URL | RequestInfo, init?: RequestInit): Promise<RResponse> => {
+
+        const response = await fetch(input, {
+            ...init,
+            method: HttpMethod.PATCH,
+        });
+
+        return new RResponse(response);
+    },
+
+    delete: async (input: URL | RequestInfo, init?: RequestInit): Promise<RResponse> => {
+
+        const response = await fetch(input, {
+            ...init,
+            method: HttpMethod.DELETE,
+        });
+
+        return new RResponse(response);
+    },
+
+    options: async (input: URL | RequestInfo, init?: RequestInit): Promise<RResponse> => {
+
+        const response = await fetch(input, {
+            ...init,
+            method: HttpMethod.OPTIONS,
+        });
+
+        return new RResponse(response);
+    },
+
+    head: async (input: URL | RequestInfo, init?: RequestInit): Promise<RResponse> => {
+
+        const response = await fetch(input, {
+            ...init,
+            method: HttpMethod.HEAD,
+        });
+
+        return new RResponse(response);
+    },
 });

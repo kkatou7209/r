@@ -77,4 +77,6 @@ export const HttpStatus = Object.freeze({
     NetworkAuthenticationRequired: 511,
 });
 
-export type HttpStatus = typeof HttpStatus[keyof typeof HttpStatus];
+export type HttpStatus = typeof HttpStatus;
+
+export type HttpStatusCode = typeof HttpStatus[keyof HttpStatus];
