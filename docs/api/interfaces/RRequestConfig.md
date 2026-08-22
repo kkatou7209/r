@@ -2,13 +2,11 @@
 
 ***
 
-[@mitte/r](../globals.md) / RConfig
+[@mitte/r](../globals.md) / RRequestConfig
 
-# Interface: RConfig
+# Interface: RRequestConfig
 
-Defined in: [src/config.ts:19](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/config.ts#L19)
-
-The configuration of a HTTP client.
+Defined in: [src/request.ts:19](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L19)
 
 ## Properties
 
@@ -45,6 +43,14 @@ Defined in: [src/config.ts:40](https://github.com/kkatou7209/r/blob/02c8297c6cdc
 Headers option.
 
 Default is `{}`.
+
+***
+
+### keepalive
+
+> `readonly` **keepalive**: `boolean`
+
+Defined in: [src/request.ts:20](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L20)
 
 ***
 

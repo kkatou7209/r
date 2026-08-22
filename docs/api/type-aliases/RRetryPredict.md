@@ -8,7 +8,7 @@
 
 > **RRetryPredict** = (`condition`) => `boolean` \| `Promise`\<`boolean`\>
 
-Defined in: retry/types.ts:4
+Defined in: [src/retry/types.ts:4](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/retry/types.ts#L4)
 
 Prediction of retring.
 

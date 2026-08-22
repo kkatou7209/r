@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { RRequest } from '@/request';
 import { HttpMethod } from '@/specs/method';
-import { RResponseMiddleware } from '@/middlewares/response';
-import { RRequestMiddleware } from '@/middlewares/request';
-import { RDefaults } from '@/default';
+import { RResponseMiddleware } from './middlewares/response';
+import { RRequestMiddleware } from './middlewares/request';
+import { RDefaults } from './default';
 
 describe('RRequest tests', async () => {
 

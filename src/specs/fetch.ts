@@ -10,6 +10,9 @@ export const CacheOption = Object.freeze({
     Reload: 'reload',
 }) satisfies Readonly<Record<string, RequestCache>>;
 
+/**
+ * @interface
+ */
 export type CacheOption = typeof CacheOption;
 
 /**
@@ -21,6 +24,9 @@ export const CredentialsOption = Object.freeze({
     SameOrigin: 'same-origin',
 }) satisfies Readonly<Record<string, RequestCredentials>>;
 
+/**
+ * @interface
+ */
 export type CredentialsOption = typeof CredentialsOption;
 
 /**
@@ -33,6 +39,9 @@ export const ModeOption = Object.freeze({
     Navigate: 'navigate',
 }) satisfies Readonly<Record<string, RequestMode>>;
 
+/**
+ * @interface
+ */
 export type ModeOption = typeof ModeOption;
 
 /**
@@ -44,6 +53,9 @@ export const PriorityOption = Object.freeze({
     Low: 'low',
 }) satisfies Readonly<Record<string, RequestPriority>>;
 
+/**
+ * @interface
+ */
 export type PriorityOption = typeof PriorityOption;
 
 /**
@@ -55,6 +67,9 @@ export const RedirectOption = Object.freeze({
     Manual: 'manual',
 }) satisfies Readonly<Record<string, RequestRedirect>>;
 
+/**
+ * @interface
+ */
 export type RedirectOption = typeof RedirectOption;
 
 export type RequestReferrer = 'about:client' | (string & {});
@@ -66,6 +81,9 @@ export const ReferrerOption = Object.freeze({
     AboutClient: 'about:client',
 }) satisfies Readonly<Record<string, RequestReferrer>>;
 
+/**
+ * @interface
+ */
 export type ReferrerOption = typeof ReferrerOption;
 
 /**
@@ -95,4 +113,7 @@ export const ReferrerPolicyOption = Object.freeze({
     UnsafeUrl: 'unsafe-url',
 }) satisfies Readonly<Record<string, RequestReferrePolicy>>;
 
+/**
+ * @interface
+ */
 export type ReferrerPolicyOption = typeof ReferrerPolicyOption;

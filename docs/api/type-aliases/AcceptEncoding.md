@@ -8,7 +8,7 @@
 
 > **AcceptEncoding** = `Readonly`\<\{ `Any`: `"*"`; `Br`: `"br"`; `Brotli`: `"br"`; `Compress`: `"compress"`; `DCB`: `"dcb"`; `DCZ`: `"dcz"`; `Deflate`: `"deflate"`; `DictionaryCompressedBrotli`: `"dcb"`; `DictionaryCompressedZStandard`: `"dcz"`; `Gzip`: `"gzip"`; `Identity`: `"identity"`; `LZ77`: `"gzip"`; `LZW`: `"compress"`; `Wildcard`: `"*"`; `ZStandard`: `"zstd"`; `Zstd`: `"zstd"`; \}\>
 
-Defined in: [specs/encoding.ts:6](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/specs/encoding.ts#L6)
+Defined in: [src/specs/encoding.ts:6](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/specs/encoding.ts#L6)
 
 `Accept-Encoding` header values.
 

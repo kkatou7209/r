@@ -8,4 +8,4 @@
 
 > **HttpStatusCode** = *typeof* [`HttpStatus`](HttpStatus.md)\[keyof [`HttpStatus`](HttpStatus.md)\]
 
-Defined in: [specs/status.ts:82](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/specs/status.ts#L82)
+Defined in: [src/specs/status.ts:82](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/specs/status.ts#L82)

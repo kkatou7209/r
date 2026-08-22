@@ -6,7 +6,7 @@
 
 # Interface: RClientBuilder
 
-Defined in: [clientBuilder.ts:14](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L14)
+Defined in: [src/clientBuilder.ts:14](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L14)
 
 Builder of HTTTP client.
 
@@ -16,7 +16,7 @@ Builder of HTTTP client.
 
 > `readonly` **build**(): [`RClient`](RClient.md)
 
-Defined in: [clientBuilder.ts:156](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L156)
+Defined in: [src/clientBuilder.ts:156](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L156)
 
 Creates new `RClient` with configured options.
 
@@ -30,7 +30,7 @@ Creates new `RClient` with configured options.
 
 > `readonly` **cache**(`cache`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:23](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L23)
+Defined in: [src/clientBuilder.ts:23](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L23)
 
 Sets `cache` option.
 
@@ -50,7 +50,7 @@ Sets `cache` option.
 
 > `readonly` **credentials**(`credentials`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:31](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L31)
+Defined in: [src/clientBuilder.ts:31](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L31)
 
 Sets `credentials` option.
 
@@ -70,7 +70,7 @@ Sets `credentials` option.
 
 > `readonly` **fetchBy**(`fetcher`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:148](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L148)
+Defined in: [src/clientBuilder.ts:148](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L148)
 
 Sets fetch function.
 
@@ -90,7 +90,7 @@ Sets fetch function.
 
 > `readonly` **header**(`name`, `value`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:79](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L79)
+Defined in: [src/clientBuilder.ts:79](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L79)
 
 Sets `headers` option.
 
@@ -114,7 +114,7 @@ Sets `headers` option.
 
 > `readonly` **headers**(`headers`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:87](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L87)
+Defined in: [src/clientBuilder.ts:87](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L87)
 
 Sets `headers` option.
 
@@ -134,7 +134,7 @@ Sets `headers` option.
 
 > `readonly` **middlewares**(...`middlewares`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:138](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L138)
+Defined in: [src/clientBuilder.ts:138](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L138)
 
 Sets `middleware` option.
 
@@ -156,7 +156,7 @@ Pre-defined middlewares will be ignored.
 
 > `readonly` **mode**(`mode`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:39](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L39)
+Defined in: [src/clientBuilder.ts:39](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L39)
 
 Sets `mode` option.
 
@@ -176,7 +176,7 @@ Sets `mode` option.
 
 > `readonly` **priority**(`priority`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:47](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L47)
+Defined in: [src/clientBuilder.ts:47](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L47)
 
 Sets `priority` option.
 
@@ -196,7 +196,7 @@ Sets `priority` option.
 
 > `readonly` **redirect**(`redirect`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:55](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L55)
+Defined in: [src/clientBuilder.ts:55](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L55)
 
 Sets `priority` option.
 
@@ -216,7 +216,7 @@ Sets `priority` option.
 
 > `readonly` **referrer**(`referrer`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:63](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L63)
+Defined in: [src/clientBuilder.ts:63](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L63)
 
 Sets `referrer` option.
 
@@ -236,7 +236,7 @@ Sets `referrer` option.
 
 > `readonly` **referrerPolicy**(`policy`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:71](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L71)
+Defined in: [src/clientBuilder.ts:71](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L71)
 
 Sets `referrerPolicy` option.
 
@@ -256,7 +256,7 @@ Sets `referrerPolicy` option.
 
 > `readonly` **retriableCodes**(`statusCodes`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:96](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L96)
+Defined in: [src/clientBuilder.ts:96](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L96)
 
 Sets `retriableCodes` option that configures status codes
 which request will retry on.
@@ -277,7 +277,7 @@ which request will retry on.
 
 > `readonly` **retryInterval**(`interval`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:128](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L128)
+Defined in: [src/clientBuilder.ts:128](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L128)
 
 Sets `retryInterval` option that configure interval milliseconds
 to the next retry.
@@ -300,7 +300,7 @@ Minumum value is `0`.
 
 > `readonly` **retryLimit**(`limit`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:117](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L117)
+Defined in: [src/clientBuilder.ts:117](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L117)
 
 Sets `retryLimit` option that configure maximum retry count of request.
 
@@ -322,7 +322,7 @@ Minumum value is `0`.
 
 > `readonly` **retryOn**(`predict`): `RClientBuilder`
 
-Defined in: [clientBuilder.ts:107](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/clientBuilder.ts#L107)
+Defined in: [src/clientBuilder.ts:107](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/clientBuilder.ts#L107)
 
 Sets `retryOn` option that configures delegate checks if the response is considered as
 retriable.

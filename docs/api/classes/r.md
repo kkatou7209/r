@@ -6,7 +6,7 @@
 
 # Class: r
 
-Defined in: [api.ts:48](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L48)
+Defined in: [src/api.ts:48](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L48)
 
 Creates client instance with `create` function and request with any method.
 
@@ -59,7 +59,7 @@ client.request('...').head();
 
 > `readonly` `static` **CacheOption**: [`CacheOption`](../type-aliases/CacheOption.md)
 
-Defined in: [api.ts:53](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L53)
+Defined in: [src/api.ts:53](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L53)
 
 `cache` options of `fetch`.
 
@@ -69,7 +69,7 @@ Defined in: [api.ts:53](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7
 
 > `readonly` `static` **CredentialsOption**: [`CredentialsOption`](../type-aliases/CredentialsOption.md)
 
-Defined in: [api.ts:63](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L63)
+Defined in: [src/api.ts:63](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L63)
 
 `redirect` options of `fetch`.
 
@@ -77,9 +77,9 @@ Defined in: [api.ts:63](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7
 
 ### Defaults
 
-> `readonly` `static` **Defaults**: [`RDefaults`](../type-aliases/RDefaults.md) = `RDefaults`
+> `readonly` `static` **Defaults**: [`RDefaults`](../interfaces/RDefaults.md) = `RDefaults`
 
-Defined in: [api.ts:83](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L83)
+Defined in: [src/api.ts:83](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L83)
 
 Default options of this library.
 
@@ -89,7 +89,7 @@ Default options of this library.
 
 > `readonly` `static` **HttpHeader**: [`HttpHeader`](../type-aliases/HttpHeader.md)
 
-Defined in: [api.ts:68](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L68)
+Defined in: [src/api.ts:68](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L68)
 
 HTTP header names.
 
@@ -99,7 +99,7 @@ HTTP header names.
 
 > `readonly` `static` **HttpMethod**: `Readonly`\<\{ `DELETE`: `"DELETE"`; `GET`: `"GET"`; `HEAD`: `"HEAD"`; `OPTIONS`: `"OPTIONS"`; `PATCH`: `"PATCH"`; `POST`: `"POST"`; `PUT`: `"PUT"`; \}\>
 
-Defined in: [api.ts:73](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L73)
+Defined in: [src/api.ts:73](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L73)
 
 HTTP meyhod names.
 
@@ -109,7 +109,7 @@ HTTP meyhod names.
 
 > `readonly` `static` **HttpStatus**: [`HttpStatus`](../type-aliases/HttpStatus.md)
 
-Defined in: [api.ts:78](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L78)
+Defined in: [src/api.ts:78](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L78)
 
 HTTP status codes.
 
@@ -119,7 +119,7 @@ HTTP status codes.
 
 > `readonly` `static` **RedirectOption**: [`RedirectOption`](../type-aliases/RedirectOption.md)
 
-Defined in: [api.ts:58](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L58)
+Defined in: [src/api.ts:58](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L58)
 
 `credentials` options of `fetch`.
 
@@ -129,7 +129,7 @@ Defined in: [api.ts:58](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7
 
 > `readonly` `static` **after**(`handler`): [`RResponseMiddleware`](../interfaces/RResponseMiddleware.md)
 
-Defined in: [api.ts:153](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L153)
+Defined in: [src/api.ts:153](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L153)
 
 Creates a new middleware to handle response.
 
@@ -151,7 +151,7 @@ Callback to handle response.
 
 > `readonly` `static` **before**(`handler`): [`RRequestMiddleware`](../interfaces/RRequestMiddleware.md)
 
-Defined in: [api.ts:144](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L144)
+Defined in: [src/api.ts:144](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L144)
 
 Creates a new middleware to handle request.
 
@@ -173,7 +173,7 @@ Callback to handle request.
 
 > `readonly` `static` **builder**(): [`RClientBuilder`](../interfaces/RClientBuilder.md)
 
-Defined in: [api.ts:137](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L137)
+Defined in: [src/api.ts:137](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L137)
 
 Creates new HTTP client instance from builder.
 
@@ -208,11 +208,11 @@ const client = r.builder()
 
 > `readonly` `static` **create**(`config?`, `fetcher?`): [`RClient`](../interfaces/RClient.md)
 
-Defined in: [api.ts:101](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L101)
+Defined in: [src/api.ts:101](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L101)
 
 Creates new HTTP client instance with optional configuration.
 
-The default configuration is defined as [RDefaultConfig](../type-aliases/RDefaultConfig.md) type.
+The default configuration is defined as [RDefaultConfig](../interfaces/RDefaultConfig.md) type.
 
 ```ts
 import { r } from '@mitte/r';
@@ -246,7 +246,7 @@ Fetch function.
 
 > `readonly` `static` **delete**(`input`, `init?`): `Promise`\<[`RResponse`](../interfaces/RResponse.md)\>
 
-Defined in: [api.ts:212](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L212)
+Defined in: [src/api.ts:212](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L212)
 
 Requests DELETE with default options.
 
@@ -270,7 +270,7 @@ Requests DELETE with default options.
 
 > `readonly` `static` **get**(`input`, `init?`): `Promise`\<[`RResponse`](../interfaces/RResponse.md)\>
 
-Defined in: [api.ts:160](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L160)
+Defined in: [src/api.ts:160](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L160)
 
 Requests GET with default options.
 
@@ -294,7 +294,7 @@ Requests GET with default options.
 
 > `readonly` `static` **head**(`input`, `init?`): `Promise`\<[`RResponse`](../interfaces/RResponse.md)\>
 
-Defined in: [api.ts:238](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L238)
+Defined in: [src/api.ts:238](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L238)
 
 Requests HEAD with default options.
 
@@ -318,7 +318,7 @@ Requests HEAD with default options.
 
 > `readonly` `static` **options**(`input`, `init?`): `Promise`\<[`RResponse`](../interfaces/RResponse.md)\>
 
-Defined in: [api.ts:225](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L225)
+Defined in: [src/api.ts:225](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L225)
 
 Requests OPTIONS with default options.
 
@@ -342,7 +342,7 @@ Requests OPTIONS with default options.
 
 > `readonly` `static` **patch**(`input`, `init?`): `Promise`\<[`RResponse`](../interfaces/RResponse.md)\>
 
-Defined in: [api.ts:199](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L199)
+Defined in: [src/api.ts:199](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L199)
 
 Requests PATCH with default options.
 
@@ -366,7 +366,7 @@ Requests PATCH with default options.
 
 > `readonly` `static` **post**(`input`, `init?`): `Promise`\<[`RResponse`](../interfaces/RResponse.md)\>
 
-Defined in: [api.ts:173](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L173)
+Defined in: [src/api.ts:173](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L173)
 
 Requests POST with default options.
 
@@ -390,7 +390,7 @@ Requests POST with default options.
 
 > `readonly` `static` **put**(`input`, `init?`): `Promise`\<[`RResponse`](../interfaces/RResponse.md)\>
 
-Defined in: [api.ts:186](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/api.ts#L186)
+Defined in: [src/api.ts:186](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/api.ts#L186)
 
 Requests PUT with default options.
 

@@ -8,7 +8,7 @@
 
 > **HeaderName** = *typeof* [`HttpHeader`](HttpHeader.md)\[keyof *typeof* [`HttpHeader`](HttpHeader.md)\]
 
-Defined in: [specs/header.ts:260](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/specs/header.ts#L260)
+Defined in: [src/specs/header.ts:264](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/specs/header.ts#L264)
 
 HTTP header name.
 

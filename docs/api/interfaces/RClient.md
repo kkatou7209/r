@@ -6,7 +6,7 @@
 
 # Interface: RClient
 
-Defined in: [client.ts:8](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/client.ts#L8)
+Defined in: [src/client.ts:8](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/client.ts#L8)
 
 HTTP client.
 
@@ -16,7 +16,7 @@ HTTP client.
 
 > `readonly` **extend**(`config`): `RClient`
 
-Defined in: [client.ts:28](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/client.ts#L28)
+Defined in: [src/client.ts:28](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/client.ts#L28)
 
 Inherits config and creates new client.
 
@@ -36,7 +36,7 @@ Inherits config and creates new client.
 
 > `readonly` **request**(`uri`): [`RRequest`](RRequest.md)
 
-Defined in: [client.ts:22](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/client.ts#L22)
+Defined in: [src/client.ts:22](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/client.ts#L22)
 
 Prepare request to specified endpoint.
 

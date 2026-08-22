@@ -5,6 +5,7 @@
     "excludePrivate": true,
     "excludeProtected": false,
     "excludeInternal": true,
+    "cleanOutputDir": true,
     "readme": "../README.md",
     "plugin": ["typedoc-plugin-markdown"],
     "externalSymbolLinkMappings": {

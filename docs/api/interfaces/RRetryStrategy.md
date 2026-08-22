@@ -6,7 +6,7 @@
 
 # Interface: RRetryStrategy
 
-Defined in: retry/strategy.ts:8
+Defined in: [src/retry/strategy.ts:8](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/retry/strategy.ts#L8)
 
 Strategy of retring.
 
@@ -16,7 +16,7 @@ Strategy of retring.
 
 > `readonly` **retriableCodes**(...`codes`): `void`
 
-Defined in: retry/strategy.ts:61
+Defined in: [src/retry/strategy.ts:61](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/retry/strategy.ts#L61)
 
 Sets status codes on which request assumed to be retriable.
 
@@ -36,7 +36,7 @@ Sets status codes on which request assumed to be retriable.
 
 > `readonly` **retryOn**(`predictor`): `void`
 
-Defined in: retry/strategy.ts:68
+Defined in: [src/retry/strategy.ts:68](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/retry/strategy.ts#L68)
 
 Sets retry predictor.
 
@@ -56,7 +56,7 @@ Sets retry predictor.
 
 > `readonly` **trial**(`request`): `Promise`\<[`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response)\>
 
-Defined in: retry/strategy.ts:44
+Defined in: [src/retry/strategy.ts:44](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/retry/strategy.ts#L44)
 
 #### Parameters
 

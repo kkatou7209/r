@@ -1,5 +1,5 @@
 /**
- * HTTP request header names.
+ * HTTP request header name's constant options.
  * 
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers}
  */
@@ -248,7 +248,11 @@ export const HttpHeader = Object.freeze({
 });
 
 /**
- * HTTP header names. 
+ * HTTP request header name's constant options.
+ * 
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers}
+ * 
+ * @interface
  */
 export type HttpHeader = typeof HttpHeader;
 

@@ -6,7 +6,7 @@
 
 # Interface: RResponse
 
-Defined in: [response.ts:6](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L6)
+Defined in: [src/response.ts:6](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L6)
 
 Wrapper of `Response`.
 
@@ -18,7 +18,7 @@ Wrapper of `Response`.
 
 > **get** **body**(): `ReadableStream`\<`Uint8Array`\<`ArrayBuffer`\>\> \| `null`
 
-Defined in: [response.ts:68](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L68)
+Defined in: [src/response.ts:68](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L68)
 
 Gets body data.
 
@@ -34,7 +34,7 @@ Gets body data.
 
 > **get** **bodyUsed**(): `boolean`
 
-Defined in: [response.ts:75](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L75)
+Defined in: [src/response.ts:75](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L75)
 
 Checks whether body data are consumed.
 
@@ -50,7 +50,7 @@ Checks whether body data are consumed.
 
 > **get** **ok**(): `boolean`
 
-Defined in: [response.ts:25](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L25)
+Defined in: [src/response.ts:25](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L25)
 
 Checks whether the status code is in the
 range of 200-299.
@@ -67,7 +67,7 @@ range of 200-299.
 
 > **get** **original**(): [`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response)
 
-Defined in: [response.ts:13](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L13)
+Defined in: [src/response.ts:13](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L13)
 
 Gets original response.
 
@@ -83,7 +83,7 @@ Gets original response.
 
 > **get** **redirected**(): `boolean`
 
-Defined in: [response.ts:47](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L47)
+Defined in: [src/response.ts:47](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L47)
 
 Checks whether or not the response is result of a
 redirect.
@@ -100,7 +100,7 @@ redirect.
 
 > **get** **status**(): `number`
 
-Defined in: [response.ts:32](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L32)
+Defined in: [src/response.ts:32](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L32)
 
 Gets the status code.
 
@@ -116,7 +116,7 @@ Gets the status code.
 
 > **get** **statusText**(): `string`
 
-Defined in: [response.ts:39](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L39)
+Defined in: [src/response.ts:39](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L39)
 
 Gets the status message.
 
@@ -132,7 +132,7 @@ Gets the status message.
 
 > **get** **type**(): `ResponseType`
 
-Defined in: [response.ts:54](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L54)
+Defined in: [src/response.ts:54](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L54)
 
 Gets the type of responses.
 
@@ -148,7 +148,7 @@ Gets the type of responses.
 
 > **get** **url**(): `string`
 
-Defined in: [response.ts:61](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L61)
+Defined in: [src/response.ts:61](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L61)
 
 Gets requested URL.
 
@@ -162,7 +162,7 @@ Gets requested URL.
 
 > `readonly` **arrayBuffer**(): `Promise`\<`ArrayBuffer`\>
 
-Defined in: [response.ts:82](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L82)
+Defined in: [src/response.ts:82](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L82)
 
 Gets body data as `ArrayBuffer`.
 
@@ -176,7 +176,7 @@ Gets body data as `ArrayBuffer`.
 
 > `readonly` **blob**(): `Promise`\<`Blob`\>
 
-Defined in: [response.ts:88](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L88)
+Defined in: [src/response.ts:88](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L88)
 
 Gets body data as `Blob`.
 
@@ -190,7 +190,7 @@ Gets body data as `Blob`.
 
 > `readonly` **bytes**(): `Promise`\<`Uint8Array`\<`ArrayBuffer`\>\>
 
-Defined in: [response.ts:94](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L94)
+Defined in: [src/response.ts:94](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L94)
 
 Gets body data as `Uint8Array`.
 
@@ -204,7 +204,7 @@ Gets body data as `Uint8Array`.
 
 > `readonly` **formData**(): `Promise`\<`FormData`\>
 
-Defined in: [response.ts:100](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L100)
+Defined in: [src/response.ts:100](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L100)
 
 Gets body data as `FormData`.
 
@@ -218,7 +218,7 @@ Gets body data as `FormData`.
 
 > `readonly` **json**\<`T`\>(): `Promise`\<`T`\>
 
-Defined in: [response.ts:112](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L112)
+Defined in: [src/response.ts:112](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L112)
 
 Gets response body parsing from JSON.
 
@@ -238,7 +238,7 @@ Gets response body parsing from JSON.
 
 > `readonly` **statusIs**(`status`): `boolean`
 
-Defined in: [response.ts:126](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L126)
+Defined in: [src/response.ts:126](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L126)
 
 Checks if status is specified value.
 
@@ -266,7 +266,7 @@ if (response.statusIs(200)) {
 
 > `readonly` **text**(): `Promise`\<`string`\>
 
-Defined in: [response.ts:106](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/response.ts#L106)
+Defined in: [src/response.ts:106](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/response.ts#L106)
 
 Gets body data as encoded `string`.
 

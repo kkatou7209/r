@@ -6,7 +6,7 @@
 
 # Interface: RetryRequest
 
-Defined in: retry/request.ts:10
+Defined in: [src/retry/request.ts:10](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/retry/request.ts#L10)
 
 Temporary request handler for retry logics.
 
@@ -19,7 +19,7 @@ requests.
 
 > `readonly` **trial**(`request`): `Promise`\<[`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response)\>
 
-Defined in: retry/request.ts:34
+Defined in: [src/retry/request.ts:34](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/retry/request.ts#L34)
 
 #### Parameters
 

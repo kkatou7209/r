@@ -8,6 +8,6 @@
 
 > **Headers** = `{ [K in HeaderName]?: string }` & `object`
 
-Defined in: [config.ts:10](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/config.ts#L10)
+Defined in: [src/config.ts:10](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/config.ts#L10)
 
 HTTP headers

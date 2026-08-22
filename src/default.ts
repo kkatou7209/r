@@ -1,5 +1,8 @@
 import type { RConfig } from '@/config';
 
+/**
+ * Default of `RConfig`.
+ */
 const RDefaultConfig = Object.freeze({
     cache: 'default',
     credentials: 'same-origin',
@@ -16,8 +19,14 @@ const RDefaultConfig = Object.freeze({
     timeout: null,
 }) satisfies Readonly<RConfig>;
 
+/**
+ * @interface
+ */
 export type RDefaultConfig = typeof RDefaultConfig;
 
+/**
+ * Default values of the library.
+ */
 export const RDefaults = Object.freeze({
     RetryLimit: 3,
     MinRetryLimit: 0,
@@ -26,4 +35,7 @@ export const RDefaults = Object.freeze({
     Config: RDefaultConfig,
 });
 
+/**
+ * @interface
+ */
 export type RDefaults = typeof RDefaults;

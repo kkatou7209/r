@@ -6,7 +6,7 @@
 
 # Interface: RRequest
 
-Defined in: [request.ts:20](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L20)
+Defined in: [src/request.ts:26](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L26)
 
 Handles HTTP requests.
 
@@ -18,7 +18,7 @@ Handles HTTP requests.
 
 > **get** **bodyData**(): `BodyInit` \| `null`
 
-Defined in: [request.ts:58](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L58)
+Defined in: [src/request.ts:64](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L64)
 
 ##### Returns
 
@@ -30,13 +30,13 @@ Defined in: [request.ts:58](https://github.com/kkatou7209/r/blob/c1bba4adf216edf
 
 #### Get Signature
 
-> **get** **config**(): [`RRequestConfig`](../type-aliases/RRequestConfig.md)
+> **get** **config**(): [`RRequestConfig`](RRequestConfig.md)
 
-Defined in: [request.ts:44](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L44)
+Defined in: [src/request.ts:50](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L50)
 
 ##### Returns
 
-[`RRequestConfig`](../type-aliases/RRequestConfig.md)
+[`RRequestConfig`](RRequestConfig.md)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [request.ts:44](https://github.com/kkatou7209/r/blob/c1bba4adf216edf
 
 > **get** **endpoint**(): `URL`
 
-Defined in: [request.ts:50](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L50)
+Defined in: [src/request.ts:56](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L56)
 
 ##### Returns
 
@@ -60,7 +60,7 @@ Defined in: [request.ts:50](https://github.com/kkatou7209/r/blob/c1bba4adf216edf
 
 > **get** **fetcher**(): (`input`, `init?`) => `Promise`\<[`Response`](https://developer.mozilla.org/en-US/docs/Web/API/Response)\>
 
-Defined in: [request.ts:40](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L40)
+Defined in: [src/request.ts:46](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L46)
 
 ##### Returns
 
@@ -90,7 +90,7 @@ Defined in: [request.ts:40](https://github.com/kkatou7209/r/blob/c1bba4adf216edf
 
 > **get** **middleware**(): ([`RRequestMiddleware`](RRequestMiddleware.md) \| [`RResponseMiddleware`](RResponseMiddleware.md))[]
 
-Defined in: [request.ts:62](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L62)
+Defined in: [src/request.ts:68](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L68)
 
 ##### Returns
 
@@ -104,7 +104,7 @@ Defined in: [request.ts:62](https://github.com/kkatou7209/r/blob/c1bba4adf216edf
 
 > **get** **searchParams**(): `URLSearchParams`
 
-Defined in: [request.ts:54](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L54)
+Defined in: [src/request.ts:60](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L60)
 
 ##### Returns
 
@@ -118,7 +118,7 @@ Defined in: [request.ts:54](https://github.com/kkatou7209/r/blob/c1bba4adf216edf
 
 > **get** **timeout**(): `number` \| `null`
 
-Defined in: [request.ts:66](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L66)
+Defined in: [src/request.ts:72](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L72)
 
 ##### Returns
 
@@ -130,7 +130,7 @@ Defined in: [request.ts:66](https://github.com/kkatou7209/r/blob/c1bba4adf216edf
 
 > `readonly` **addSignal**(`signal`): `RRequest`
 
-Defined in: [request.ts:267](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L267)
+Defined in: [src/request.ts:273](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L273)
 
 Sets `signal` option to [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit).
 
@@ -150,7 +150,7 @@ Sets `signal` option to [RequestInit](https://developer.mozilla.org/en-US/docs/W
 
 > `readonly` **body**(`body`): `RRequest`
 
-Defined in: [request.ts:155](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L155)
+Defined in: [src/request.ts:161](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L161)
 
 Sets body data.
 
@@ -170,7 +170,7 @@ Sets body data.
 
 > `readonly` **cache**(`cache`): `RRequest`
 
-Defined in: [request.ts:198](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L198)
+Defined in: [src/request.ts:204](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L204)
 
 Sets `cache` option to [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit).
 
@@ -190,7 +190,7 @@ Sets `cache` option to [RequestInit](https://developer.mozilla.org/en-US/docs/We
 
 > `readonly` **clearHeaders**(): `RRequest`
 
-Defined in: [request.ts:259](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L259)
+Defined in: [src/request.ts:265](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L265)
 
 Clears all headers of [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit).
 
@@ -204,7 +204,7 @@ Clears all headers of [RequestInit](https://developer.mozilla.org/en-US/docs/Web
 
 > `readonly` **credentials**(`credentials`): `RRequest`
 
-Defined in: [request.ts:206](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L206)
+Defined in: [src/request.ts:212](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L212)
 
 Sets `credentials` option to [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit).
 
@@ -224,7 +224,7 @@ Sets `credentials` option to [RequestInit](https://developer.mozilla.org/en-US/d
 
 > `readonly` **delete**(): `Promise`\<[`RResponse`](RResponse.md)\>
 
-Defined in: [request.ts:125](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L125)
+Defined in: [src/request.ts:131](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L131)
 
 Exceutes DELETE request.
 
@@ -238,7 +238,7 @@ Exceutes DELETE request.
 
 > `readonly` **formData**(`value`): `RRequest`
 
-Defined in: [request.ts:171](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L171)
+Defined in: [src/request.ts:177](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L177)
 
 Sets body data converting JavaScript object into `FormData`.
 
@@ -258,7 +258,7 @@ Sets body data converting JavaScript object into `FormData`.
 
 > `readonly` **get**(): `Promise`\<[`RResponse`](RResponse.md)\>
 
-Defined in: [request.ts:101](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L101)
+Defined in: [src/request.ts:107](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L107)
 
 Executes GET request.
 
@@ -272,7 +272,7 @@ Executes GET request.
 
 > `readonly` **head**(): `Promise`\<[`RResponse`](RResponse.md)\>
 
-Defined in: [request.ts:137](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L137)
+Defined in: [src/request.ts:143](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L143)
 
 Exceutes HEAD request.
 
@@ -286,7 +286,7 @@ Exceutes HEAD request.
 
 > `readonly` **header**(`name`, `value`): `RRequest`
 
-Defined in: [request.ts:238](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L238)
+Defined in: [src/request.ts:244](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L244)
 
 Sets `headers` option to [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit).
 
@@ -310,7 +310,7 @@ Sets `headers` option to [RequestInit](https://developer.mozilla.org/en-US/docs/
 
 > `readonly` **headers**(`headers`): `RRequest`
 
-Defined in: [request.ts:246](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L246)
+Defined in: [src/request.ts:252](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L252)
 
 Sets `headers` option to [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit).
 
@@ -330,7 +330,7 @@ Sets `headers` option to [RequestInit](https://developer.mozilla.org/en-US/docs/
 
 > `readonly` **json**(`value`): `RRequest`
 
-Defined in: [request.ts:163](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L163)
+Defined in: [src/request.ts:169](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L169)
 
 Sets body data converting JavaScript value into JSON string.
 
@@ -350,7 +350,7 @@ Sets body data converting JavaScript value into JSON string.
 
 > `readonly` **keepalive**(): `RRequest`
 
-Defined in: [request.ts:190](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L190)
+Defined in: [src/request.ts:196](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L196)
 
 Sets `keepalive` option to [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit).
 
@@ -364,7 +364,7 @@ Sets `keepalive` option to [RequestInit](https://developer.mozilla.org/en-US/doc
 
 > `readonly` **mode**(`mode`): `RRequest`
 
-Defined in: [request.ts:214](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L214)
+Defined in: [src/request.ts:220](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L220)
 
 Sets `mode` option to [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit).
 
@@ -384,7 +384,7 @@ Sets `mode` option to [RequestInit](https://developer.mozilla.org/en-US/docs/Web
 
 > `readonly` **options**(): `Promise`\<[`RResponse`](RResponse.md)\>
 
-Defined in: [request.ts:131](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L131)
+Defined in: [src/request.ts:137](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L137)
 
 Exceutes OPTIONS request.
 
@@ -398,7 +398,7 @@ Exceutes OPTIONS request.
 
 > `readonly` **params**(`params`): `RRequest`
 
-Defined in: [request.ts:143](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L143)
+Defined in: [src/request.ts:149](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L149)
 
 Sets URL parameters.
 
@@ -418,7 +418,7 @@ Sets URL parameters.
 
 > `readonly` **patch**(): `Promise`\<[`RResponse`](RResponse.md)\>
 
-Defined in: [request.ts:119](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L119)
+Defined in: [src/request.ts:125](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L125)
 
 Exceutes PATCH request.
 
@@ -432,7 +432,7 @@ Exceutes PATCH request.
 
 > `readonly` **post**(): `Promise`\<[`RResponse`](RResponse.md)\>
 
-Defined in: [request.ts:107](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L107)
+Defined in: [src/request.ts:113](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L113)
 
 Executes POST request.
 
@@ -446,7 +446,7 @@ Executes POST request.
 
 > `readonly` **priority**(`priority`): `RRequest`
 
-Defined in: [request.ts:222](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L222)
+Defined in: [src/request.ts:228](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L228)
 
 Sets `priority` option to [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit).
 
@@ -466,7 +466,7 @@ Sets `priority` option to [RequestInit](https://developer.mozilla.org/en-US/docs
 
 > `readonly` **put**(): `Promise`\<[`RResponse`](RResponse.md)\>
 
-Defined in: [request.ts:113](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L113)
+Defined in: [src/request.ts:119](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L119)
 
 Excutes PUT request.
 
@@ -480,7 +480,7 @@ Excutes PUT request.
 
 > `readonly` **redirect**(`redirect`): `RRequest`
 
-Defined in: [request.ts:230](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L230)
+Defined in: [src/request.ts:236](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L236)
 
 Sets `priority` option to [RequestInit](https://developer.mozilla.org/en-US/docs/Web/API/RequestInit).
 
@@ -500,7 +500,7 @@ Sets `priority` option to [RequestInit](https://developer.mozilla.org/en-US/docs
 
 > `readonly` **retriableCodes**(`statusCodes`): `RRequest`
 
-Defined in: [request.ts:275](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L275)
+Defined in: [src/request.ts:281](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L281)
 
 Sets status codes on which request assumed to be retriable.
 
@@ -520,7 +520,7 @@ Sets status codes on which request assumed to be retriable.
 
 > `readonly` **retryOn**(`predict`): `RRequest`
 
-Defined in: [request.ts:286](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/request.ts#L286)
+Defined in: [src/request.ts:292](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/request.ts#L292)
 
 Sets `retryOn` option.
 

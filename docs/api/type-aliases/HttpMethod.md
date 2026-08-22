@@ -8,7 +8,7 @@
 
 > **HttpMethod** = `Readonly`\<\{ `DELETE`: `"DELETE"`; `GET`: `"GET"`; `HEAD`: `"HEAD"`; `OPTIONS`: `"OPTIONS"`; `PATCH`: `"PATCH"`; `POST`: `"POST"`; `PUT`: `"PUT"`; \}\>
 
-Defined in: [specs/method.ts:6](https://github.com/kkatou7209/r/blob/c1bba4adf216edf2ea7a1f4d15fcd5723eae51e6/src/specs/method.ts#L6)
+Defined in: [src/specs/method.ts:6](https://github.com/kkatou7209/r/blob/02c8297c6cdcf6efa9828072b519ebde0b663441/src/specs/method.ts#L6)
 
 HTTP request methods.
 

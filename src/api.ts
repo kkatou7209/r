@@ -2,12 +2,13 @@ import { RClient } from '@/client';
 import { type RConfig } from '@/config';
 import { RRequestMiddleware, type RRequestMiddlewareHandler } from '@/middlewares/request';
 import { RResponseMiddleware, type RResponseMiddlewareHandler } from '@/middlewares/response';
-import { CacheOption, RedirectOption, CredentialsOption } from '@/specs/fetch';
+import { CacheOption, RedirectOption, CredentialsOption, ReferrerOption, ReferrerPolicyOption, PriorityOption, ModeOption } from '@/specs/fetch';
 import { HttpHeader } from '@/specs/header';
 import { RDefaults, type RDefaultConfig } from '@/default';
 import { RResponse } from '@/response';
 import { HttpMethod } from '@/specs/method';
 import { HttpStatus } from '@/specs/status';
+import { AcceptEncodingOption, Encoders } from './specs/encoding';
 
 /**
  * Creates client instance with `create` function and request with any method.
@@ -55,12 +56,20 @@ export class r {
     /**
      * `credentials` options of `fetch`.
      */
-    public static readonly RedirectOption: RedirectOption = RedirectOption;
+    public static readonly Redirect: RedirectOption = RedirectOption;
 
     /**
      * `redirect` options of `fetch`.
      */
-    public static readonly CredentialsOption: CredentialsOption = CredentialsOption;
+    public static readonly Credentials: CredentialsOption = CredentialsOption;
+
+    public static readonly Referrer: ReferrerOption = ReferrerOption;
+
+    public static readonly ReferrerPolicy: ReferrerPolicyOption = ReferrerPolicyOption;
+
+    public static readonly Priority: PriorityOption = PriorityOption;
+
+    public static readonly Mode: ModeOption = ModeOption;
 
     /**
      * HTTP header names.
@@ -81,6 +90,51 @@ export class r {
      * Default options of this library.
      */
     public static readonly Defaults: RDefaults = RDefaults;
+
+    /**
+     * Utilities for creating `Accept-Encoding` values.
+     * 
+     * Gets header values.
+     * 
+     * ```ts
+     * import { r } from '@mitte/r';
+     * 
+     * const value = r.Encode.gzip();
+     * 
+     * console.log(value); // => "gzip"
+     * ```
+     * 
+     * Header value with quality.
+     * 
+     * ```ts
+     * import { r } from '@mitte/r';
+     * 
+     * const value = r.Encode.zstd({ quality: 0.5 });
+     * 
+     * console.log(value); // => "zstd;q=0.5"
+     * ```
+     * 
+     * If you want multiple form of `Accept-Encoding` value, use `Encoders.join`.
+     * 
+     * ```
+     * import { r } from '@mitte/r';
+     * 
+     * const value = r.Encode.join(
+     *      r.Encoder.gzip(),
+     *      r.Encoder.deflate({ quality: 0.7 }),
+     *      r.Encoder.zstd({ quality: 1.6 }),
+     *      r.Encoder.dcb({ quality: -1 }),
+     * );
+     * 
+     * console.log(value) // => "gzip, deflate;q=0.7, zstd;q=1.0, dcb;q=0.0"
+     * ```
+     */
+    public static readonly Encode: Encoders = Encoders;
+
+    /**
+     * Encoder names of `Accept-Encoding`.
+     */
+    public static readonly Encoder: AcceptEncodingOption = AcceptEncodingOption;
 
     /**
      * Creates new HTTP client instance with optional configuration.

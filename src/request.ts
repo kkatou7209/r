@@ -8,8 +8,14 @@ import { RRetryStrategy } from '@/retry/strategy';
 import type { RRetryPredict } from '@/retry/types';
 import type { Mutable } from '@/types';
 
+/**
+ * @interface
+ */
 export type RRequestInit = RequestInit & { headers: Record<string, string>; };
 
+/**
+ * @interface
+ */
 export type RRequestConfig = RConfig & {
     readonly keepalive: boolean;
 }
